@@ -18,5 +18,3 @@ Route::get('/', function () {
 });
 //hernando moran
 
-//otra linea de codigo
-// A

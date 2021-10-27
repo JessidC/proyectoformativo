@@ -18,3 +18,9 @@ Route::get('/', function () {
 });
 //hernando moran
 
+//otra linea de codigo
+// A
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

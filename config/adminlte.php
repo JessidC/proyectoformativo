@@ -270,8 +270,8 @@ return [
                     'url'  => '/productos',
                 ],
                 [
-                    'text' => 'Crear Oferta',
-                    'url'  => '#',
+                    'text' => 'Todas las Oferta',
+                    'url'  => '/ofertas',
                 ],
                 [
                     'text' => 'Crear Categoria',

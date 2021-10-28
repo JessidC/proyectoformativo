@@ -13,4 +13,12 @@ class ProductoController extends Controller
         $productos = Producto::all();
         return view('producto.productos');
     }
+
+    public function ofertas()
+    {
+        return view('producto.ofertas');
+    }
+
+
+
 }

@@ -267,7 +267,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Todos los productos',
-                    'url'  => '#',
+                    'url'  => '/productos',
                 ],
                 [
                     'text' => 'Crear Oferta',

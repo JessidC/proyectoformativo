@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//jc
+
 Route::get('/', function () {
     return view('welcome');
 });
-//hernando moran
 
-//otra linea de codigo
-// A
+Route::get('/nando', function () {
+    return view('nando');
+});
 
 Auth::routes();
 

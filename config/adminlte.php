@@ -247,29 +247,38 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Pedidos',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
-            'label_color' => 'success',
+            'label_color' => 'primary',
         ],
         ['header' => 'account_settings'],
+
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
+            'text' => 'Usuarios',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        ['header' => 'OTROS'],
         [
-            'text'    => 'multilevel',
+            'text'    => 'Productos',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Todos los productos',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Crear Oferta',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Crear Categoria',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Crear Subcategoria',
                     'url'  => '#',
                 ],
                 [
@@ -302,6 +311,26 @@ return [
                 ],
             ],
         ],
+
+        [
+            'text'    => 'Usuarios',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Todos los Usuarios',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Crear Usuario',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Mi perfil',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
         ['header' => 'labels'],
         [
             'text'       => 'important',
@@ -317,6 +346,11 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
+        ],
+        [
+            'text' => 'profile',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user',
         ],
     ],
 

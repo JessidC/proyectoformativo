@@ -3,8 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h1> Aqui codigo del home</h1>
+        <h1> bienvenido a la clase</h1>
     </div>
-
 
 @endsection

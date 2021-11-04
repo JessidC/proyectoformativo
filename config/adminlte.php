@@ -246,112 +246,114 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'Pedidos',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'primary',
-        ],
-        ['header' => 'account_settings'],
+        
+        ['header' => 'ADMINISTRACION'],
 
         [
             'text' => 'Usuarios',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'far fa-user',
         ],
-        ['header' => 'OTROS'],
+
         [
             'text'    => 'Productos',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas fa-box-open',
             'submenu' => [
                 [
                     'text' => 'Todos los productos',
                     'url'  => '/productos',
                 ],
                 [
-                    'text' => 'Todas las Oferta',
+                    'text' => 'Todas las Ofertas',
                     'url'  => '/ofertas',
                 ],
                 [
-                    'text' => 'Crear Categoria',
-                    'url'  => '#',
+                    'text' => 'Todas las Categorias',
+                    'url'  => '/categorias',
                 ],
                 [
-                    'text' => 'Crear Subcategoria',
-                    'url'  => '#',
+                    'text' => 'Todas las Subcategoria',
+                    'url'  => '/subcategorias',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text' => 'Garantias',
+                    'url'  => '/garantias',
                 ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
+
+                //[
+                    //'text'    => 'level_one',
+                    //'url'     => '#',
+                    //'submenu' => [
+                        //[
+                            //'text' => 'level_two',
+                            //'url'  => '#',
+                        //],
+                        //[
+                            //'text'    => 'level_two',
+                            //'url'     => '#',
+                            //'submenu' => [
+                                //[
+                                    //'text' => 'level_three',
+                                    //'url'  => '#',
+                                //],
+                                //[
+                                    //'text' => 'level_three',
+                                    //'url'  => '#',
+                                //],
+                            //],
+                        //],
+                    //],
+                //],
+                //[
+                    //'text' => 'level_one',
+                    //'url'  => '#',
+                //],
             ],
         ],
 
         [
-            'text'    => 'Usuarios',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Todos los Usuarios',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Crear Usuario',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Mi perfil',
-                    'url'  => '#',
-                ],
-            ],
+            'text'        => 'Pedidos',
+            'url'         => '/pedidos',
+            'icon'        => 'fas fa-dolly',
+            'label'       => 4,
+            'label_color' => 'primary',
         ],
 
-        ['header' => 'labels'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
+            'text' => 'Fidelizacion',
+            'url'  => '/fidelizaciones',
+            'icon' => 'fab fa-pushed',
+        ],  
+
+        ['header' => 'REPORTERIA'],
+
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+            'text' => 'Reportes',
+            'url'  => '/reportes',
+            'icon' => 'far fa-file-alt',
+        ],  
+
+        //['header' => 'labels'],
+        //[
+            //'text'       => 'important',
+            //'icon_color' => 'red',
+            //'url'        => '#',
+        //],
+        //[
+            //'text'       => 'warning',
+            //'icon_color' => 'yellow',
+            //'url'        => '#',
+       // ],
+       // [
+            //'text'       => 'information',
+            //'icon_color' => 'cyan',
+            //'url'        => '#',
+        //],
+       // [
+            //'text' => 'profile',
+            //'url'  => 'admin/settings',
+            //'icon' => 'fas fa-fw fa-user',
+        //],
     ],
 
     /*

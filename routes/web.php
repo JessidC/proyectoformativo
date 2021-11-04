@@ -29,10 +29,27 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos');
 
 
-//ruta daniel
-
 Route::get('/ofertas', [App\Http\Controllers\ProductoController::class, 'ofertas'])->name('');
 
 
+Route::get('/categorias', [App\Http\Controllers\ProductoController::class, 'categorias'])->name('');
+
+Route::get('/subcategorias', [App\Http\Controllers\ProductoController::class, 'subcategorias'])->name('');
+
+Route::get('/garantias', [App\Http\Controllers\ProductoController::class, 'garantias'])->name('');
+
+Route::get('/reportes', [App\Http\Controllers\ReporteController::class, 'reportes'])->name('');
+
+Route::get('/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('');
+
+Route::get('/fidelizaciones', [App\Http\Controllers\FidelizacionController::class, 'fidelizaciones'])->name('');
 
 
+//USUARIOS
+
+
+
+
+
+
+//PRODUCTOS

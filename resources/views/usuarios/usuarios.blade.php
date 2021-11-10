@@ -7,9 +7,9 @@
 @stop
 
 @section('content')
-    <p>Aqui es el codigo de mis ofertas.</p>
+    <p>Aqui es el codigo de mis </p>
 
-    <h1>Bienvenido a la seccion de ofertas</h1>
+    <h1>Bienvenido a la seccion de Usuarios</h1>
 @stop
 
 @section('css')

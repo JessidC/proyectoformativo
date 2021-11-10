@@ -251,7 +251,7 @@ return [
 
         [
             'text' => 'Usuarios',
-            'url'  => 'admin/settings',
+            'url'  => '/usuarios/usuarios',
             'icon' => 'far fa-user',
         ],
 
@@ -261,23 +261,23 @@ return [
             'submenu' => [
                 [
                     'text' => 'Todos los productos',
-                    'url'  => '/productos',
+                    'url'  => '/productos/productos',
                 ],
                 [
                     'text' => 'Todas las Ofertas',
-                    'url'  => '/ofertas',
+                    'url'  => '/ofertas/ofertas',
                 ],
                 [
                     'text' => 'Todas las Categorias',
-                    'url'  => '/categorias',
+                    'url'  => '/categorias/categorias',
                 ],
                 [
                     'text' => 'Todas las Subcategoria',
-                    'url'  => '/subcategorias',
+                    'url'  => '/subcategorias/subcategorias',
                 ],
                 [
                     'text' => 'Garantias',
-                    'url'  => '/garantias',
+                    'url'  => '/garantias/garantias',
                 ],
 
                 //[
@@ -313,7 +313,7 @@ return [
 
         [
             'text'        => 'Pedidos',
-            'url'         => '/pedidos',
+            'url'         => '/pedidos/pedidos',
             'icon'        => 'fas fa-dolly',
             'label'       => 4,
             'label_color' => 'primary',

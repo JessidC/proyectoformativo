@@ -10,28 +10,13 @@ class ProductoController extends Controller
 
     public function index()
     {
-        //$productos = Producto::all();
-        return view('producto.productos');
+        $productos = Producto::all();
+        return view('productos.productos',compact('productos'));
     }
 
-    public function ofertas()
+    public function agregar()
     {
-        return view('producto.ofertas');
-    }
-
-    public function categorias()
-    {
-        return view('producto.categorias');
-    }
-
-    public function subcategorias()
-    {
-        return view('producto.subcategorias');
-    }
-
-    public function garantias()
-    {
-        return view('producto.garantias');
+        return view('productos.crear');
     }
 
 }

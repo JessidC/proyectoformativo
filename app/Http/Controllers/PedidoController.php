@@ -9,6 +9,6 @@ class PedidoController extends controller
 {
     public function pedidos()
     {
-        return view('pedidos');
+        return view('pedidos/pedidos');
     }
 }

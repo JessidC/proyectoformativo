@@ -18,38 +18,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/nando', function () {
-    return view('nando');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos');
-
-
-Route::get('/ofertas', [App\Http\Controllers\ProductoController::class, 'ofertas'])->name('');
-
-
-Route::get('/categorias', [App\Http\Controllers\ProductoController::class, 'categorias'])->name('');
-
-Route::get('/subcategorias', [App\Http\Controllers\ProductoController::class, 'subcategorias'])->name('');
-
-Route::get('/garantias', [App\Http\Controllers\ProductoController::class, 'garantias'])->name('');
-
-Route::get('/reportes', [App\Http\Controllers\ReporteController::class, 'reportes'])->name('');
-
-Route::get('/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('');
-
-Route::get('/fidelizaciones', [App\Http\Controllers\FidelizacionController::class, 'fidelizaciones'])->name('');
-
-
 //USUARIOS
-
-
-
-
-
+Route::get('/usuarios/usuarios', [App\Http\Controllers\UsuarioController::class, 'users'])->name('usuarios');
 
 //PRODUCTOS
+Route::get('/productos/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos');
+Route::get('/productos/agregar', [App\Http\Controllers\ProductoController::class, 'agregar'])->name('pro.agregar');
+
+//CATEGORIAS
+Route::get('/categorias/categorias', [App\Http\Controllers\CategoriaController::class, 'categorias'])->name('');
+
+//SUBCATEGORIAS
+Route::get('/subcategorias/subcategorias', [App\Http\Controllers\SubcategoriaController::class, 'subcategorias'])->name('');
+
+//PEDIDOS
+Route::get('/pedidos/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('');
+
+//OFERTAS
+Route::get('/ofertas/ofertas', [App\Http\Controllers\OfertaController::class, 'ofertas'])->name('');
+
+//GARANTIAS
+Route::get('/garantias/garantias', [App\Http\Controllers\GarantiaController::class, 'garantias'])->name('');
+
+//REPORTES
+Route::get('/reportes', [App\Http\Controllers\ReporteController::class, 'reportes'])->name('');
+
+//FIDELIZACIONES 
+Route::get('/fidelizaciones', [App\Http\Controllers\FidelizacionController::class, 'fidelizaciones'])->name('');

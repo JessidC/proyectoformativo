@@ -33,6 +33,9 @@ Route::get('/productos/agregar', [App\Http\Controllers\ProductoController::class
 //CATEGORIAS
 Route::get('/categorias/categorias', [App\Http\Controllers\CategoriaController::class, 'categorias'])->name('categorias');
 Route::get('/categorias/agregar', [App\Http\Controllers\CategoriaController::class, 'agregar'])->name('cat.agregar');
+Route::post('/categorias/crear', [App\Http\Controllers\CategoriaController::class, 'guardar'])->name('cat.guardar');
+Route::get('/categorias/{id?}/editar', [App\Http\Controllers\CategoriaController::class, 'buscar'])->name('cat.buscar');
+Route::post('/categorias/actualizar', [App\Http\Controllers\CategoriaController::class, 'actualizar'])->name('cat.actualizar');
 
 //SUBCATEGORIAS
 Route::get('/subcategorias/subcategorias', [App\Http\Controllers\SubcategoriaController::class, 'subcategorias'])->name('');

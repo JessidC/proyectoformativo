@@ -16,5 +16,34 @@ class CategoriaController extends controller
     {
         return view('categorias.crear');
     }
-    
+
+    public function guardar(Request $request)
+    {
+            Categoria::create([
+                'nombre_categoria' => $request->nombre
+            ]);
+
+        return redirect()->route('categorias');
+    }
+
+    public function buscar(Request $request, $id)
+    {
+            $categoria = Categoria::findOrFail($id);
+
+            return view('categorias.editar', compact('categoria'));
+    }
+
+    public function actualizar(Request $request)
+    {
+        $id=$request->id;
+        $nombre = $request->nombre;
+
+        $categoria = Categoria::findOrFail($id);
+        $categoria->nombre_categoria = $nombre;
+        $categoria->save();
+
+        return redirect()->route('categorias');
+    }
+
+
 }

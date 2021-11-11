@@ -21,6 +21,7 @@
             <tr>
               <th scope="col">id</th>
               <th scope="col">Nombre</th>
+              <th scope="col">Editar</th>
             </tr>
           </thead>
           <tbody>
@@ -28,6 +29,9 @@
             <tr>
               <th scope="row">{{$cat->id_categoria}}</th>
               <td>{{$cat->nombre_categoria}}</td>
+              <td>
+                <a class="btn btn-success btn-sm" href="{{ Route ('cat.buscar', $cat->id_categoria)}}" role="button">Editar</a>
+              </td>
             </tr>
             @endforeach
           </tbody>

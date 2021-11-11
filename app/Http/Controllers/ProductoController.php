@@ -19,4 +19,4 @@ class ProductoController extends Controller
         return view('productos.crear');
     }
 
-}
+}       

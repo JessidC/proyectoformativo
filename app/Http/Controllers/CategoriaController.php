@@ -9,7 +9,12 @@ class CategoriaController extends controller
 {
     public function categorias()
     {
-        return view('categorias.categorias');
+        $categorias = Categoria::all();
+        return view('categorias.categorias', compact('categorias'));
+    }
+    public function agregar()
+    {
+        return view('categorias.crear');
     }
     
 }

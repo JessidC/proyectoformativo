@@ -11,4 +11,11 @@ class OfertaController extends controller
     {
         return view('ofertas.ofertas');
     }
+    
+    public function agregar()
+    {
+        return view('ofertas.crear');
+    }
+
+
 }

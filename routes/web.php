@@ -18,22 +18,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/nando', function () {
-    return view('nando');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //USUARIOS
-Route::get('/usuarios/usuarios', [App\Http\Controllers\UsuarioController::class, 'users'])->name('');
+Route::get('/usuarios/usuarios', [App\Http\Controllers\UsuarioController::class, 'users'])->name('usuarios');
 
 //PRODUCTOS
 Route::get('/productos/productos', [App\Http\Controllers\ProductoController::class, 'index'])->name('productos');
+Route::get('/productos/agregar', [App\Http\Controllers\ProductoController::class, 'agregar'])->name('pro.agregar');
 
 //CATEGORIAS
-Route::get('/categorias/categorias', [App\Http\Controllers\CategoriaController::class, 'categorias'])->name('');
+Route::get('/categorias/categorias', [App\Http\Controllers\CategoriaController::class, 'categorias'])->name('categorias');
+Route::get('/categorias/agregar', [App\Http\Controllers\CategoriaController::class, 'agregar'])->name('cat.agregar');
 
 //SUBCATEGORIAS
 Route::get('/subcategorias/subcategorias', [App\Http\Controllers\SubcategoriaController::class, 'subcategorias'])->name('');
@@ -42,7 +41,8 @@ Route::get('/subcategorias/subcategorias', [App\Http\Controllers\SubcategoriaCon
 Route::get('/pedidos/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('');
 
 //OFERTAS
-Route::get('/ofertas/ofertas', [App\Http\Controllers\OfertaController::class, 'ofertas'])->name('');
+Route::get('/ofertas/ofertas', [App\Http\Controllers\OfertaController::class, 'ofertas'])->name('ofertas');
+Route::get('/ofertas/agregar', [App\Http\Controllers\OfertaController::class, 'agregar'])->name('ofer.agregar');
 
 //GARANTIAS
 Route::get('/garantias/garantias', [App\Http\Controllers\GarantiaController::class, 'garantias'])->name('');

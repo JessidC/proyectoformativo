@@ -246,7 +246,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        
+
         ['header' => 'ADMINISTRACION'],
 
         [
@@ -261,23 +261,23 @@ return [
             'submenu' => [
                 [
                     'text' => 'Todos los productos',
-                    'url'  => '/productos/productos',
+                    'route'  => 'productos',
                 ],
                 [
                     'text' => 'Todas las Ofertas',
-                    'url'  => '/ofertas/ofertas',
+                    'route'  => 'ofertas',
                 ],
                 [
                     'text' => 'Todas las Categorias',
-                    'url'  => '/categorias/categorias',
+                    'route'  => 'categorias',
                 ],
                 [
                     'text' => 'Todas las Subcategoria',
-                    'url'  => '/subcategorias/subcategorias',
+                    'route'  => 'subca',
                 ],
                 [
                     'text' => 'Garantias',
-                    'url'  => '/garantias/garantias',
+                    'url'  => 'garantias',
                 ],
 
                 //[
@@ -323,7 +323,7 @@ return [
             'text' => 'Fidelizacion',
             'url'  => '/fidelizaciones',
             'icon' => 'fab fa-pushed',
-        ],  
+        ],
 
         ['header' => 'REPORTERIA'],
 
@@ -331,7 +331,7 @@ return [
             'text' => 'Reportes',
             'url'  => '/reportes',
             'icon' => 'far fa-file-alt',
-        ],  
+        ],
 
         //['header' => 'labels'],
         //[

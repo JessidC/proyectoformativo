@@ -33,6 +33,14 @@ class CategoriaController extends controller
             return view('categorias.editar', compact('categoria'));
     }
 
+    public function borrar($id)
+    {
+            $categoria = Categoria::findOrFail($id);
+            $categoria->delete();
+
+            return redirect()->route('categorias');
+    }
+
     public function actualizar(Request $request)
     {
         $id=$request->id;

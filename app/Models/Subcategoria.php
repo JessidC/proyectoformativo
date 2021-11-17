@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Subcategoria extends Model
 {
     use HasFactory;
+
+    protected $table='subcategoria';
+
+    protected $fillable = [
+        'id_categoria',
+        'nombre_subcategoria'
+    ];
+
+    public $timestamps = false;
+
+    protected $primaryKey = 'id_subcategoria';
 }

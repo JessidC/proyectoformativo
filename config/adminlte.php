@@ -273,7 +273,7 @@ return [
                 ],
                 [
                     'text' => 'Todas las Subcategoria',
-                    'route'  => 'subca',
+                    'route'  => 'subcategorias',
                 ],
                 [
                     'text' => 'Garantias',

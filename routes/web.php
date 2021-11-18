@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [App\Http\Controllers\FrontController::class, 'index'])->name('index');
 
 
 Auth::routes();
@@ -39,12 +41,12 @@ Route::get('/categorias/{id?}/borrar', [App\Http\Controllers\CategoriaController
 Route::post('/categorias/actualizar', [App\Http\Controllers\CategoriaController::class, 'actualizar'])->name('cat.actualizar');
 
 //SUBCATEGORIAS
-Route::get('/subcategorias', [App\Http\Controllers\SubcategoriaController::class, 'subcategorias'])->name('subca');
-Route::get('/subcategorias/agregar', [App\Http\Controllers\SubcategoriaController::class, 'agregar'])->name('sub.agregar');
-Route::post('/subcategorias/crear', [App\Http\Controllers\SubcategoriaController::class, 'guardar'])->name('sub.guardar');
-Route::get('/subcategorias/{id?}/editar', [App\Http\Controllers\SubcategoriaController::class, 'buscar'])->name('sub.buscar');
-Route::get('/subcategorias/{id?}/borrar', [App\Http\Controllers\SubcategoriaController::class, 'borrar'])->name('sub.borrar');
-Route::post('/subcategorias/actualizar', [App\Http\Controllers\SubcategoriaController::class, 'actualizar'])->name('sub.actualizar');
+Route::get('/subcategorias/subcategorias', [App\Http\Controllers\SubcategoriaController::class, 'subcategorias'])->name('subcategorias');
+Route::get('/subcategorias/agregar', [App\Http\Controllers\SubcategoriaController::class, 'agregar'])->name('subca.agregar');
+Route::post('/subcategorias/crear', [App\Http\Controllers\SubcategoriaController::class, 'guardar'])->name('subca.guardar');
+Route::get('/subcategorias/{id?}/editar', [App\Http\Controllers\SubcategoriaController::class, 'buscar'])->name('subca.buscar');
+Route::post('/subcategorias/actualizar', [App\Http\Controllers\SubcategoriaController::class, 'actualizar'])->name('subca.actualizar');
+Route::get('/subcategorias/{id?}/eliminar', [App\Http\Controllers\SubcategoriaController::class, 'eliminar'])->name('subca.eliminar');
 
 //PEDIDOS
 Route::get('/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('');

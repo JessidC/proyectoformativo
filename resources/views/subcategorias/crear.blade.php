@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <form method="post" action="{{ Route('sub.guardar') }}">
+    <form method="post" action="{{ Route('subca.guardar') }}">
         @csrf
         <div class="mb-3">
             <label class="form-label">Nombre de Subcategoria</label>
@@ -25,7 +25,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Crear Categoria</button>
-        <a class="btn btn-danger" href="{{ Route('subca') }}">Cancelar</a>
+        <a class="btn btn-danger" href="{{ Route('subcategorias') }}">Cancelar</a>
     </form>
 
 

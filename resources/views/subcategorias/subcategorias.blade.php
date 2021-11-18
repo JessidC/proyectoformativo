@@ -1,39 +1,44 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Subcategorias</h1>
+    <h1>Dashboard</h1>
 @stop
 
 @section('content')
 <div class="card">
       <div class="card-header">
         <h1>Bienvenido a la seccion de SubCategorias</h1>
-        <a class="btn btn-primary" href="{{ Route ('sub.agregar')}}" role="button">Crear SubCategoria</a>
+        <a class="btn btn-primary" href="{{ Route ('subca.agregar')}}" role="button">Crear Subcategoria</a>
 
         <span></span>
         <br>
         <p></p>
 
-        <table class="table" id="tbcategorias">
+        <table class="table" id="tbsubcategorias">
           <thead>
             <tr>
               <th scope="col">id</th>
-              <th scope="col">Nombre SubCategoria</th>
-              <th scope="col">Categoria</th>
+              <th scope="col">categoria</th>
+              <th scope="col">Subcategoria</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
-              @foreach ($subcategorias as $sub)
+              @foreach ($subcategorias as $subca)
             <tr>
-              <th scope="row">{{$sub->id_subcategoria}}</th>
-              <td>{{$sub->nombre_subcategoria}}</td>
-              <td>{{$sub->nombre_categoria}}</td>
+              <th scope="row">{{$subca->id_subcategoria}}</th>
+              <td>{{$subca->id_categoria}}</td>
+              <td>{{$subca->nombre_subcategoria}}</td>
+
               <td>
-                <a class="btn btn-success btn-sm" href="{{ Route ('cat.buscar', $sub->id_categoria)}}" role="button">Editar</a>
-                <a class="btn btn-danger btn-sm" href="{{ Route ('cat.borrar', $sub->id_categoria)}}" role="button">Eliminar</a>
+              <form action="{{route('subca.eliminar',$subca->id_subcategoria)}}" >
+                <a class="btn btn-success" href="{{ Route ('subca.buscar', $subca->id_subcategoria)}}" role="button">Editar</a>
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit">Borrar</button>
+              </form>
               </td>
             </tr>
             @endforeach
@@ -48,9 +53,5 @@
 @stop
 
 @section('js')
-<script>
-$(document).ready(function() {
-    $('#tbcategorias').DataTable();
-} );
-</script>
+
 @stop

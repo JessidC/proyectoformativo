@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
 class CategoriaController extends controller
@@ -35,10 +36,19 @@ class CategoriaController extends controller
 
     public function borrar($id)
     {
+
+            $activo = Estado::where('estado','=','activo')->first();
+            $inactivo = Estado::where('estado','=','inactivo')->first();
+
             $categoria = Categoria::findOrFail($id);
-            $categoria->delete();
+            if ($categoria->estado_a_i_id == $activo->id)
+                $categoria->estado_a_i_id = $inactivo->id;
+            else
+                $categoria->estado_a_i_id = $activo->id;
+            $categoria->save();
 
             return redirect()->route('categorias');
+
     }
 
     public function actualizar(Request $request)

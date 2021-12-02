@@ -12,6 +12,6 @@ class FrontController extends Controller
     {
         $productos = Producto::take(8)->get();
 
-        return view('welcome', compact('productos' ) );
+        return view('welcome', compact('productos') );
     }
 }

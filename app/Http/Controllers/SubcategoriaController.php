@@ -36,36 +36,33 @@ class SubcategoriaController extends controller
 
     public function buscar(Request $request, $id)
     {
-            $subcategoria = Subcategoria::findOrFail($id);
+            $subcategorias = Subcategoria::findOrFail($id);
+            $categorias = Categoria::all();
 
-            return view('subcategorias.editar', compact('subcategoria'));
+            return view('subcategorias.editar', compact('subcategorias','categorias'));
     }
 
     public function actualizar(Request $request)
     {
         $id=$request->id;
         $nombre = $request->nombre;
+        $categoria= $request->categoria;
 
         $subcategoria = Subcategoria::findOrFail($id);
         $subcategoria->nombre_subcategoria = $nombre;
+        $categoria->id_categoria=$categoria;
         $subcategoria->save();
 
-        return redirect()->route('subcategorias');
+        return redirect()->route('subca');
     }
 
     public function eliminar($id)
     {
         $subcategoria = Subcategoria::findOrFail($id);
         $subcategoria->delete();
-        return redirect()->route('subcategorias');
+        return redirect()->route('subca');
     }
 
 
 
 }
-
-
-
-
-
-

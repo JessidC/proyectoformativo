@@ -21,7 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'tipos_id_tipo'
+        'tipos_id_tipo',
+        'estado_usuario_id',
+        'fidelizacion_id'
     ];
 
     /**

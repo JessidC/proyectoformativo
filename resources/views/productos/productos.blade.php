@@ -21,22 +21,37 @@
             <tr>
               <th scope="col">id</th>
               <th scope="col">Nombre</th>
-              <th scope="col">Descripcion</th>
+              <th scope="col">Cantidad</th>
               <th scope="col">Precio</th>
+              <th scope="col">Subcategoria</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">imagen</th>
               <th scope="col">Descuento</th>
               <th scope="col">Garantia</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
-              @foreach ($productos as $p)
+              @foreach ($productos as $pro)
             <tr>
-              <th scope="row">{{$p->id_producto}}</th>
-              <td>{{$p->nombre_producto}}</td>
-              <td>{{$p->descripcion_producto}}</td>
-              <td>{{$p->valor_actual}}</td>
-              <td>{{$p->descuento}}</td>
-              <td>{{$p->garantia}}</td>
+              <th scope="row">{{$pro->id_producto}}</th>
+              <td>{{$pro->nombre_producto}}</td>
+              <td>{{$pro->cantidad_existente}}</td>
+              <td>{{$pro->valor_actual}}</td>
+              <td>{{$pro->nombre_subcategoria}}</td>
+              <td>{{$pro->marcas_id_marcas}}</td>
+              <td>{{$pro->descripcion_producto}}</td>
+              <td><img src="/img/{{$pro->imagen_producto}}" alt="" ></td>
+              <td>{{$pro->descuento}}</td>
+              <td>{{$pro->garantia}}</td>
+              <td>
+                <a class="btn btn-success btn-sm" href="{{ Route ('pro.buscar', $pro->id_producto)}}" role="button">Editar</a>
+                
+              </td>
             </tr>
+
+
             @endforeach
           </tbody>
         </table>

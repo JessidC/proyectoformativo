@@ -247,38 +247,40 @@ return [
             'can'  => 'manage-blog',
         ],
 
-        ['header' => 'ADMINISTRACION'],
+        ['header' => 'ADSI-184'],
 
         [
             'text' => 'Usuarios',
-            'url'  => '/usuarios/usuarios',
+            'url'  => 'usuarios',
             'icon' => 'far fa-user',
         ],
 
         [
-            'text'    => 'Productos',
+            'text'    => 'Administracion',
             'icon'    => 'fas fa-box-open',
             'submenu' => [
                 [
                     'text' => 'Todos los productos',
                     'route'  => 'productos',
                 ],
-                [
-                    'text' => 'Todas las Ofertas',
-                    'route'  => 'ofertas',
-                ],
+                
                 [
                     'text' => 'Todas las Categorias',
                     'route'  => 'categorias',
                 ],
                 [
                     'text' => 'Todas las Subcategoria',
-                    'route'  => 'subcategorias',
+                    'route'  => 'subca',
+                ],
+                [
+                    'text' => 'Marcas',
+                    'route'  => 'marcas',
                 ],
                 [
                     'text' => 'Garantias',
                     'url'  => 'garantias',
                 ],
+
 
                 //[
                     //'text'    => 'level_one',

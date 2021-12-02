@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Tipo;
+use App\Models\Estado;
+use App\Models\Fidelizacion;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -67,12 +69,16 @@ class RegisterController extends Controller
     {
 
         $tipo = Tipo::where('nombre_tipo', '=', 'cliente')->first();
+        $estado = Estado::where('estado','=','activo')->first();
+        $fidelizacion = Fidelizacion::where('nombre','=','bronce')->first();
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'tipos_id_tipo' => $tipo->id_tipo,
+            'password' => Hash::make($data['password']),    
+            'tipos_id_tipo' => $tipo->id,
+            'estado_usuario_id'=> $estado->id,
+            'fidelizacion_id'=>$fidelizacion->id,
         ]);
     }
 }

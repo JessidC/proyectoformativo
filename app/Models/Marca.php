@@ -9,12 +9,10 @@ class Marca extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'nombre_marcas',
-    ];
+    protected $guarded = [];
 
     public $timestamps = false;
 
     protected $primaryKey = 'id';
-    
+
 }

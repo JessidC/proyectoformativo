@@ -32,8 +32,15 @@
                             <td>
                                 <a class="btn btn-success btn-sm" href="{{ Route('cat.buscar', $cat->id_categoria) }}"
                                     role="button">Editar</a>
+                                @if ($cat->estado_a_i_id == 1)
                                 <a class="btn btn-danger btn-sm" href="{{ Route('cat.borrar', $cat->id_categoria) }}"
-                                    role="button">Eliminar</a>
+                                    role="button">Desactivar</a>
+                                @else
+
+                                <a class="btn btn-warning btn-sm" href="{{ Route('cat.borrar', $cat->id_categoria) }}"
+                                    role="button">Activar</a>
+
+                                @endif
                             </td>
                         </tr>
                     @endforeach

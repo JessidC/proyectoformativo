@@ -21,6 +21,12 @@
         <select class="form-control" name="categoria">
             @foreach ($categorias as $cat)
             <option value="{{$cat->id_categoria}}" >{{$cat->nombre_categoria}}</option>
+                {{-- @if ({{ $subcategorias->id_categoria == $cat->id_categoria }})
+                <option value="{{$cat->id_categoria}}" selected >{{$cat->nombre_categoria}}</option>
+                 @else --}}
+<option value="{{$cat->id_categoria}}" {{$subcategorias->id_categoria == $cat->id_categoria ? 'selected' : ''}}>{{$cat->nombre_categoria}}</option>
+                {{-- @endif --}}
+
             @endforeach
         </select>
     </div>

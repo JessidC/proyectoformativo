@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use App\Models\Estado;
 use Illuminate\Http\Request;
 
 class MarcaController extends controller
@@ -19,8 +20,10 @@ class MarcaController extends controller
 
     public function guardar(Request $request)
     {
+        $estado = Estado::where('estado','=','activo')->first();
             Marca::create([
-                'nombre_marcas' => $request->nombre
+                'nombre_marcas' => $request->nombre,
+                'estado_a_i_id' => $estado->id
             ]);
 
         return redirect()->route('marcas');
@@ -44,6 +47,25 @@ class MarcaController extends controller
 
         return redirect()->route('marcas');
     }
+
+    public function eliminar($id)
+    {
+
+        $activo = Estado::where('estado','=','activo')->first();
+        $inactivo = Estado::where('estado','=','inactivo')->first();
+
+        $marca = Marca::findOrFail($id);
+        if ($marca->estado_a_i_id == $activo->id)
+            $marca->estado_a_i_id = $inactivo->id;
+        else
+            $marca->estado_a_i_id = $activo->id;
+        $marca->save();
+
+        return redirect()->route('marcas');
+    }
+
+
+
 
 
 }

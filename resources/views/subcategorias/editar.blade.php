@@ -20,8 +20,6 @@
     <label for="exampleFormControlSelect1">Categoria</label>
         <select class="form-control" name="categoria">
             @foreach ($categorias as $cat)
-            
-            {{$cat->nombre_categoria}}
             <option value="{{$cat->id_categoria}}" >{{$cat->nombre_categoria}}</option>
             @endforeach
         </select>

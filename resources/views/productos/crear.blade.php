@@ -8,23 +8,82 @@
 
 @section('content')
 
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<form method="post" action="{{ Route('pro.guardar') }}">
+  @csrf
 
+  </div>
+  <div class="col-md-4">
+      <label for="exampleFormControlSelect1">Subcategoria</label>
+        <select class="form-control" name="subcategoria">
+          @foreach ($subcategorias as $subca)
+            <option value="{{$subca->id_subcategoria}}" >{{$subca->nombre_subcategoria}}</option>
+          @endforeach
+        </select>
+  </div>
+
+  <div class="col-md-4">
+            <label class="form-label">Nombre de Producto</label>
+            <input type="text" name="nombre" class="form-control">
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Valor</label>
+    <div class="input-group">
+      <span class="input-group-text" id="inputGroupPrepend2">$</span>
+      <input type="number" class="form-control" name="valor" >
+    </div>
+  </div>
+
+  <div class="col-md-4">
+            <label class="form-label">Cantidad</label>
+            <input type="number" name="cantidad" class="form-control">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Descripcion</label>
+    <input type="text" name="descripcion"class="form-control">
+  </div>
+
+  <div class="col-md-4">
+      <label for="exampleFormControlSelect1">Marca</label>
+        <select class="form-control" name="marca">
+          @foreach ($marcas as $mar)
+            <option value="{{$mar->id}}" >{{$mar->nombre_marcas}}</option>
+          @endforeach
+        </select>
+  </div>
+
+
+
+  <div class="col-md-4">
+    <label class="form-label">Imagen</label>
+    <input type="text" name="imagen" class="form-control">
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label">Descuento</label>
+    <input type="number" name="descuento" class="form-control">
+  </div>
+
+  <div class="col-md-4">
+            <label class="form-label">Garantia</label>
+            <input type="number" name="garantia" class="form-control">
+  <br>
+  </div>
+
+  <div class="mb-3 row">
+    <br>
+    <label class="col-sm-2 col-form-label">Usuario</label>
+    <div class="col-sm-10">
+      <input type="text" readonly class="form-control-plaintext" name="usuario" value= {{auth()->user()->id}}> 
+    </div>
+
+  <div class="col-12">
+    <br>
+    <button class="btn btn-primary" type="submit">Crear producto</button>
+    <a class="btn btn-danger" href="{{ Route ('productos')}}">Cancelar</a>
+  </div>
+
+</form>
 @stop
 
 @section('css')

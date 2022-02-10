@@ -14,6 +14,7 @@ class ProductoController extends Controller
     {
         $productos = Producto::join('subcategoria','subcategoria.id_subcategoria','producto.id_subcategoria')->get();
         $productos = Producto::join('marcas','marcas.id','producto.marcas_id_marcas')->get();
+        $productos = Producto::join('users','users.id','producto.users_id')->get();
         $producto = Auth()->user();
         return view('productos.productos',compact('productos'));
 
@@ -53,7 +54,7 @@ class ProductoController extends Controller
             $productos = Producto::findOrFail($id);
             $subcategorias = Subcategoria::all();
             $marcas= Marca::all();
-            $user_id = User::user()->id;
+            $user_id = User::all();
 
             return view('productos.editar', compact('productos','subcategorias','marcas','user_id'));
     }
@@ -87,6 +88,14 @@ class ProductoController extends Controller
         $producto->save();
 
         return redirect()->route('productos');
+    }
+
+
+    public function api_detalle($id)
+    {
+        $producto = Producto::findOrFail($id);
+        
+        return ($producto);
     }
 
 

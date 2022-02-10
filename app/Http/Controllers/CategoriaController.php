@@ -20,8 +20,11 @@ class CategoriaController extends controller
 
     public function guardar(Request $request)
     {
-            Categoria::create([
-                'nombre_categoria' => $request->nombre
+        $activo = Estado::where('estado','=','activo')->first();
+
+            $categoria =Categoria::create([
+                'nombre_categoria' => $request->nombre,
+                'estado_a_i_id' => $activo->id
             ]);
 
         return redirect()->route('categorias');

@@ -16,7 +16,7 @@
         <br>
         <p></p>
 
-        <table class="table" id="tbproductos">
+        <table  id="tbproductos" class="table table-striped table-bordered" style="width:100%">
           <thead>
             <tr>
               <th scope="col">id</th>
@@ -29,6 +29,7 @@
               <th scope="col">imagen</th>
               <th scope="col">Descuento</th>
               <th scope="col">Garantia</th>
+              <!--<th scope="col">Usuario</th>-->
               <th scope="col">Acciones</th>
             </tr>
           </thead>
@@ -45,6 +46,7 @@
               <td><img src="/img/{{$pro->imagen_producto}}" alt="" ></td>
               <td>{{$pro->descuento}}</td>
               <td>{{$pro->garantia}}</td>
+              <!--<td>{{$pro->users_id}}</td>-->
               <td>
                 <a class="btn btn-success btn-sm" href="{{ Route ('pro.buscar', $pro->id_producto)}}" role="button">Editar</a>
                 

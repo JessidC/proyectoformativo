@@ -21,14 +21,15 @@ class UsuarioController extends Controller
     public function guardar(Request $request)
     {
             Usuario::create([
-                'apellido_usuario' => $request->apellido_usuario,
+            
                 'name' => $request->name,
                 'celular' => $request->celular,
                 'usuario' => $request->usuario,
                 'contrasena' =>  Hash::make($request->contrasena),
                 'documento' => $request->documento,
                 'email' => $request->email,
-                'tipos_id_tipo' => $request->tipos_id_tipo
+                'tipos_id_tipo' => $request->tipos_id_tipo,
+                'estado_a_i_id'=> $request->id
             ]);
         return redirect()->route('users');
     }

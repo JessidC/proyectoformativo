@@ -44,7 +44,14 @@ Route::get('/productos/{id?}/editar', [App\Http\Controllers\ProductoController::
 Route::get('/productos/{id?}/borrar', [App\Http\Controllers\ProductoController::class, 'borrar'])->name('pro.borrar');
 Route::get('/productos/actualizar', [App\Http\Controllers\ProductoController::class, 'actualizar'])->name('pro.actualizar');
 Route::post('/productos/{id?}', [App\Http\Controllers\ProductoController::class, 'api_detalle'])->name('pro.api.detalle');
+
+
+//CARRITO
+Route::get('/front/carrito', [App\Http\Controllers\CarritoController::class, 'index'])->name('cart');
+Route::post('/apicarrito/{id?}', [App\Http\Controllers\CarritoController::class, 'apiCarrito'])->name('apicarrito');
+
 //CATEGORIAS
+
 Route::get('/categorias/categorias', [App\Http\Controllers\CategoriaController::class, 'categorias'])->name('categorias');
 Route::get('/categorias/agregar', [App\Http\Controllers\CategoriaController::class, 'agregar'])->name('cat.agregar');
 Route::post('/categorias/crear', [App\Http\Controllers\CategoriaController::class, 'guardar'])->name('cat.guardar');

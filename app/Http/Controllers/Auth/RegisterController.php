@@ -69,16 +69,16 @@ class RegisterController extends Controller
     {
 
         $tipo = Tipo::where('nombre_tipo', '=', 'cliente')->first();
-        $estado = Estado::where('estado','=','activo')->first();
-        $fidelizacion = Fidelizacion::where('nombre','=','bronce')->first();
+        $estado = 1;
+        $fidelizacion = 1;
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'tipos_id_tipo' => $tipo->id,
-            'estado_a_i_id'=> $estado->id,
-            'fidelizacion_id'=>$fidelizacion->id,
+            'estado'=> $estado,
+            'fidelizacion_id'=>$fidelizacion,
         ]);
     }
 }

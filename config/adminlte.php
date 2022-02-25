@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<br><b>Admin</b><br>Compra Segura',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'AdminLTf',
 
     /*
     |--------------------------------------------------------------------------
@@ -277,35 +277,39 @@ return [
                     'route'  => 'marcas',
                 ],
                 [
+                    'text' => 'Direccion',
+                    'route'  => 'direccion',
+                ],
+                [
                     'text' => 'Garantias',
                     'url'  => 'garantias',
                 ],
 
 
-                //[
-                    //'text'    => 'level_one',
-                    //'url'     => '#',
-                    //'submenu' => [
-                        //[
-                            //'text' => 'level_two',
-                            //'url'  => '#',
-                        //],
-                        //[
-                            //'text'    => 'level_two',
-                            //'url'     => '#',
-                            //'submenu' => [
-                                //[
-                                    //'text' => 'level_three',
-                                    //'url'  => '#',
-                                //],
-                                //[
-                                    //'text' => 'level_three',
-                                    //'url'  => '#',
-                                //],
-                            //],
-                        //],
-                    //],
-                //],
+                [
+                    'text'    => 'level_one',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'level_two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
                 //[
                     //'text' => 'level_one',
                     //'url'  => '#',
@@ -335,12 +339,12 @@ return [
             'icon' => 'far fa-file-alt',
         ],
 
-        //['header' => 'labels'],
-        //[
+        ['header' => 'labels'],
+        [
             //'text'       => 'important',
             //'icon_color' => 'red',
             //'url'        => '#',
-        //],
+        ],
         //[
             //'text'       => 'warning',
             //'icon_color' => 'yellow',

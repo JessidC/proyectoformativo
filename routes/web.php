@@ -18,7 +18,12 @@ use Illuminate\Support\Facades\Route;
     //return view('welcome');
 //});
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index'])->name('welcome');
-
+Route::get('/front/about', [App\Http\Controllers\FrontController::class, 'info'])->name('info');
+Route::get('/front/tecnologia', [App\Http\Controllers\FrontController::class, 'catTecno'])->name('tecno');
+Route::get('/front/Hogar', [App\Http\Controllers\FrontController::class, 'catHogar'])->name('hogar');
+Route::get('/front/verproductos', [App\Http\Controllers\FrontController::class, 'vistaProductos'])->name('vProductos');
+Route::get('/front/carrito', [App\Http\Controllers\FrontController::class, 'vCarrito'])->name('carrito');
+Route::get('/front/otros', [App\Http\Controllers\FrontController::class, 'catOtro'])->name('otros');
 
 Auth::routes();
 
@@ -75,8 +80,12 @@ Route::get('/marcas/{id?}/editar', [App\Http\Controllers\MarcaController::class,
 Route::get('/marcas/{id?}/eliminar', [App\Http\Controllers\MarcaController::class, 'eliminar'])->name('mar.eliminar');
 Route::post('/marcas/actualizar', [App\Http\Controllers\MarcaController::class, 'actualizar'])->name('mar.actualizar');
 
+//DIRECCION
+Route::get('/direcciones/direccion', [App\Http\Controllers\DireccionController::class, 'index'])->name('direccion');
+
 //PEDIDOS
 Route::get('/pedidos/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('pedidos');
+
 
 //OFERTAS
 Route::get('/ofertas', [App\Http\Controllers\OfertaController::class, 'ofertas'])->name('ofertas');
@@ -90,3 +99,6 @@ Route::get('/reportes', [App\Http\Controllers\ReporteController::class, 'reporte
 
 //FIDELIZACIONES
 Route::get('/fidelizaciones', [App\Http\Controllers\FidelizacionController::class, 'fidelizaciones'])->name('');
+
+//APIMOVILE
+Route::resource('apimovile', ApiMovileController::class);

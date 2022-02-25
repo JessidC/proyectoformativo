@@ -20,10 +20,10 @@
           <thead>
             <tr>
               <th scope="col">id</th>
+              <th scope="col">Subcategoria</th>
               <th scope="col">Nombre</th>
               <th scope="col">Cantidad</th>
               <th scope="col">Precio</th>
-              <th scope="col">Subcategoria</th>
               <th scope="col">Marca</th>
               <th scope="col">Descripcion</th>
               <th scope="col">imagen</th>
@@ -37,10 +37,10 @@
               @foreach ($productos as $pro)
             <tr>
               <th scope="row">{{$pro->id_producto}}</th>
+              <td>{{$pro->nombre_subcategoria}}</td>
               <td>{{$pro->nombre_producto}}</td>
               <td>{{$pro->cantidad_existente}}</td>
               <td>{{$pro->valor_actual}}</td>
-              <td>{{$pro->nombre_subcategoria}}</td>
               <td>{{$pro->marcas_id_marcas}}</td>
               <td>{{$pro->descripcion_producto}}</td>
               <td><img src="/img/{{$pro->imagen_producto}}" alt="" ></td>

@@ -9,6 +9,9 @@ class PedidoController extends controller
 {
     public function pedidos()
     {
-        return view('pedidos/pedidos');
+        $pedidos= Pedido::all();
+        $pedidos= Pedido:: join('direccion','direccion.id_direccion','pedidos.id_direccion')->get();
+        
+        return view('pedidos.pedidos', compact('pedidos'));
     }
 }

@@ -17,9 +17,7 @@ class SubcategoriaController extends controller
 
     public function agregar()
     {
-        $categorias = Categoria::join('estado_a_i', 'estado_a_i_id', 'estado_a_i.id')
-        ->where('estado_a_i.estado','activo')->get();
-
+        $categorias = Categoria::all();
         return view('subcategorias.crear', compact('categorias'));
     }
 

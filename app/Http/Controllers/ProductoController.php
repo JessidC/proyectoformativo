@@ -23,9 +23,10 @@ class ProductoController extends Controller
 
     public function agregar()
     {
-        $subcategorias = Subcategoria::all();
+        $subcategorias=Subcategoria::all();
         $marcas=Marca::all();
         $user_id =User::all();
+
         return view('productos.crear', compact('subcategorias','marcas','user_id'));
     }
 
@@ -62,7 +63,7 @@ class ProductoController extends Controller
     public function actualizar(Request $request)
     {
         $id=$request->id;
-        $subcategoria=$request->subcategoria;   
+        $subcategorias=$request->subcategoria;   
         $nombre = $request->nombre;
         $valor=$request->valor;
         $cantidad=$request->cantidad;
@@ -74,7 +75,7 @@ class ProductoController extends Controller
         $user_id= Auth::user()->usuario;
 
         $producto = Producto::findOrFail($id);
-        $producto->id_subcategoria = $subcategoria;
+        $producto->id_subcategoria = $subcategorias;
         $producto->nombre_producto=$nombre;
         $producto->valor_actual=$valor;
         $producto->cantidad_existente=$cantidad;

@@ -3885,6 +3885,7 @@ input[type=button].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  
 }
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
@@ -3953,6 +3954,7 @@ input[type=button].btn-block {
   display: block;
 }
 
+@media (min-width: 700px) { 
 .navbar {
   position: relative;
   display: flex;
@@ -3960,6 +3962,8 @@ input[type=button].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  
+}
 }
 .navbar .container,
 .navbar .container-fluid,
@@ -3995,6 +3999,7 @@ input[type=button].btn-block {
 .navbar-nav .nav-link {
   padding-right: 0;
   padding-left: 0;
+  
 }
 .navbar-nav .dropdown-menu {
   position: static;
@@ -4005,12 +4010,14 @@ input[type=button].btn-block {
   display: inline-block;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  
 }
 
 .navbar-collapse {
   flex-basis: 100%;
   flex-grow: 1;
   align-items: center;
+  
 }
 
 .navbar-toggler {

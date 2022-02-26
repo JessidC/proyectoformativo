@@ -161,13 +161,13 @@ Compra Segura
         </ol>
         <div class="carousel-inner ">
             <div class="carousel-item active ">
-                <img class="d-block w-100 " src="{{asset('img/1.png')}}" style="height: 500px;" alt="First slide">
+                <img class="d-block w-100 " src="{{asset('img/1.png')}}" style="height: 300px;" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{asset('img/2.png')}}" style="height: 500px;" alt="Second slide">
+                <img class="d-block w-100" src="{{asset('img/2.png')}}" style="height: 300px;" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{asset('img/3.png')}}" style="height: 500px;" alt="Third slide">
+                <img class="d-block w-100" src="{{asset('img/3.png')}}" style="height: 300px;" alt="Third slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pedido;
 
 
 class HomeController extends Controller
@@ -15,6 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('soloadmin',['only'=>'index']);
     }
 
     /**
@@ -23,7 +25,17 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+
     {
-        return view('home');
+        $pedidos= Pedido::all();
+        $pedidos= Pedido:: join('direccion','direccion.id_direccion','pedidos.id_direccion')->get();
+
+        return view('home',compact('pedidos'));
     }
+
+    public function getUser()
+    {
+        return redirect ('');
+    }
+
 }

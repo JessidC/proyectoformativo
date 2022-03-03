@@ -1,0 +1,33 @@
+#info-table{text-align: center;}
+#info-input{width: 1200px;margin: 0px auto;}
+#info-input>div{
+    width: 1200px;
+    margin: 20px 0px;
+}
+.shopCount{color: orange;}
+a{text-decoration: none;color: deepskyblue;}
+#resultTotalMoney,#integralTotal{color: orange;}
+.total-div{text-align: right;}
+.btdelete{float: left;}
+.btorinter-div{height: auto;overflow: auto;}
+.viewIntegral{float: right;}
+.btbuy{background-color: orange;color: white;border: 0px;float: right;}
+#shop{
+    width: 800px;margin: 0px auto;
+    height: auto;
+    overflow: auto;
+}
+#shop li{
+    text-align: center;
+    list-style: none;
+    float: left;
+    height: auto;
+    overflow: auto;
+    margin: 20px;
+}
+#shop a{
+    display: block;
+    height: auto;
+    overflow: auto;
+}
+.price{color: red;}

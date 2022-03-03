@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<br><b>Admin</b><br>Compra Segura',
+    'logo' => '<br><b>Admin</b>Compra Segura',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -280,36 +280,33 @@ return [
                     'text' => 'Direccion',
                     'route'  => 'direccion',
                 ],
-                [
-                    'text' => 'Garantias',
-                    'url'  => 'garantias',
-                ],
+                
 
 
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
+                //[
+                    //'text'    => 'level_one',
+                    //'url'     => '#',
+                    //'submenu' => [
+                      //  [
+                        //    'text' => 'level_two',
+                          //  'url'  => '#',
+                        //],
+                        //[
+                          //  'text'    => 'level_two',
+                            //'url'     => '#',
+                            //'submenu' => [
+                              //  [
+                                //    'text' => 'level_three',
+                                  //  'url'  => '#',
+                                //],
+                                //[
+                                 //   'text' => 'level_three',
+                                  //  'url'  => '#',
+                                //],
+                            //],
+                        //],
+                    //],
+                //],
                 //[
                     //'text' => 'level_one',
                     //'url'  => '#',
@@ -326,20 +323,12 @@ return [
         ],
 
         [
-            'text' => 'Fidelizacion',
+            'text' => 'PQRS',
             'url'  => '/fidelizaciones',
-            'icon' => 'fab fa-pushed',
-        ],
-
-        ['header' => 'REPORTERIA'],
-
-        [
-            'text' => 'Reportes',
-            'url'  => '/reportes',
             'icon' => 'far fa-file-alt',
         ],
 
-        ['header' => 'labels'],
+        //['header' => 'labels'],
         [
             //'text'       => 'important',
             //'icon_color' => 'red',

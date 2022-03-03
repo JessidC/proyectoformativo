@@ -42,6 +42,8 @@
                             <td>
                                 <a class="btn btn-success btn-sm" href=""
                                     role="button">Editar</a>
+                                <a class="btn btn-success btn-sm" href="{{ Route ('pedidos.pdf', $pe->id_pedidos)}}"
+                                    role="button">Facturar</a>
                             </td>
                         </tr>
                     @endforeach

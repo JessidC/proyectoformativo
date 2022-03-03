@@ -72,7 +72,7 @@ class ProductoController extends Controller
         $marca=$request->marca;
         $descuento=$request->descuento;
         $garantia=$request->garantia;
-        $user_id= Auth::user()->usuario;
+        $usuario= Auth::user()->usuario;
 
         $producto = Producto::findOrFail($id);
         $producto->id_subcategoria = $subcategorias;

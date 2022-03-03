@@ -43,7 +43,7 @@
               <td>{{$pro->valor_actual}}</td>
               <td>{{$pro->marcas_id_marcas}}</td>
               <td>{{$pro->descripcion_producto}}</td>
-              <td><img src="/img/{{$pro->imagen_producto}}" alt="" ></td>
+              <td><img src=" <?php echo ($pro['imagen_producto']) ?> " width="120" alt="" ></td>
               <td>{{$pro->descuento}}</td>
               <td>{{$pro->garantia}}</td>
               <!--<td>{{$pro->users_id}}</td>-->

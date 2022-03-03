@@ -81,9 +81,8 @@ Compra Segura
           <ul class="submenu dropdown-menu">       
           @foreach ($subcategoria as $sub)
           @if( $sub->id_categoria == $ca->id_categoria)
-            <li><a class="dropdown-item" href="#">{{$sub->nombre_subcategoria}}</a></li>
-            @endif
-                     
+            <li><a class="dropdown-item" href="{{ Route ('vProductos', $sub->id_subcategoria)}}">{{$sub->nombre_subcategoria}}</a></li>
+            @endif       
             @endforeach
           </ul>
         </li>
@@ -95,8 +94,8 @@ Compra Segura
     <li class="nav-item"><a class="nav-link" href="">Mi Perfil</a></li><li class="nav-item dropdown" id="myDropdown">
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">PQRS</a></li>
-      <li><a class="dropdown-item" href="#">Preguntas frecuentes</a></li>
+      <li><a class="dropdown-item" href="{{ Route ('pecu') }}">PQRS</a></li>
+      <li><a class="dropdown-item" href="{{ Route ('preguntas') }}">Preguntas frecuentes</a></li>
       </ul>
     </div>  
     </li>
@@ -259,10 +258,8 @@ Compra Segura
                     <!-- Product actions-->
                     <div class="card-footer p-3 pt-1 border-top-2 bg-transparent">
                         <div class="text-center border-top-1">
-                            <a class="btn btn-outline-primary btn-sm" onclick="addToCart({{$p->id_producto}})" role="button">Agregar Carrito</a>
+                        <a class="btn btn-outline-primary btn-sm" onclick="addCarrito({{$p->id_producto}})" role="button">Agregar Carrito</a>
                             
-
-
                             <a class="btn btn btn-primary btn-sm" onclick="datos({{$p->id_producto}})" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalle</a>
                             {{-- <button role="button" class="btn btn-primary"  >
                                         Launch demo modal
@@ -310,6 +307,105 @@ Compra Segura
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                         </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+        </div>
+        <!-- Modal no registrado -->
+        <div class="d-flex justify-content-center">
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">No has ingresado</h4>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Dedes de ingresar a tu cuenta para hacer un pedido&hellip;</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="submit" class="btn btn-primary"  href="{{ route('register') }}">Registrarse</a>
+                            <a type="submit" class="btn btn-primary" href="{{ route('login') }}">Ingresar</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal cantidad producto -->
+        <div class="d-flex justify-content-center">
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">que cantidad quieres</h4>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <form action="{{route('cart.guardar')}}" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                <p>ingresa la cantidad de tu producto&hellip;</p>
+                                <input type="hidden" name="idDireccion" id="idDireccion">
+                                <input type="hidden" name="idProducto" id="idProduc">
+                                <input type="number" name="cantidad" id="cant">
+                            </div>
+                            <div class="modal-footer">
+                                <a type="submit" class="btn btn-danger">cancelar</a>
+                                <button type="submit" class="btn btn-primary">agregar</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal Sin direccion -->
+        <div class="d-flex justify-content-center">
+            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">No Tienes Direccion</h4>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Dedes de ingresar a tu direccion para poder hacer un pedido&hellip;</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="submit" class="btn btn-primary"  href="{{ route('register') }}">Registrarse</a>
+                            <a type="submit" class="btn btn-primary" href="{{ route('login') }}">Ingresar</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal elegir direccion -->
+        <div class="d-flex justify-content-center">
+            <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<Merge Conflict>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Selecione Una Direccion</h4>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table" id="direcciones">
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="submit" class="btn btn-primary"  href="{{ route('register') }}">Crear una Direcion</a>
+                        </div>
                     </div>
                 </div>
 
@@ -317,8 +413,12 @@ Compra Segura
         </div>
 
 
+        
         <script>
             function datos(h) {
+                $('#exampleModal1').modal(
+                                'show'
+                                );
                 $('#tituloP').val(' ')
                 $('#valor').val(' ')
                 $('#cantidad').val(' ')
@@ -349,105 +449,74 @@ Compra Segura
 
             }
 
-            function addToCart(obj){
-                $('#imagenP').attr(' ')
-                $('#tituloP').val(' ')
-                $('#valor').val(' ')
+            function addCarrito(id) {
+                $('#idProduc').val(id)
                 $.ajax({
                     type: "post",
-                    // url:"{{ Route ('apicarrito',"+obj+")}}",
-                    url: 'productos/' + h,
+                    // url:"{{ Route ('pro.api.detalle')}}",
+                    url: 'apicarrito',
                     data: {
-                        id: h,
-                        _token: '{{ csrf_token() }}'
+                        _token: '{{ csrf_token()}}'
                     },
-                success: function(res) {
-                        $('#imagenP').attr("src", res['imagen_producto'])
-                        $('#tituloP').val(res['nombre_producto'])
-                        $('#valor').val(res['valor_actual'])
-
-				var result = confirm('¿Añadir este producto al carrito de la compra? ');
-				if (result == false){
-					return;
-				}
-				// Formulario de carrito de compras
-				var cartBox = document.getElementById("mytable");
-				// Objeto de mercancía
-				var shop = {
-					shopImg:obj.children[0].src,
-					shopIntegral:parseInt(eval(obj.children[2].innerHTML + "/20")),
-					shopPrice:obj.children[2].innerHTML
-				}
-				// Determine si el producto existe
-				var img = document.getElementsByClassName("imgbackground");
-				var result = "-1";
-				for (var i = 0;i < img.length;i++){
-					if (shop.shopImg == img[i].children[0].src){
-						result = i;
-					}
-				}
-				if (result != "-1"){
-					var count = img[result].parentElement.children[4].children[1];
-					count.value = eval(count.value + "+1");
-					// Recalcular el subtotal
-					singleAllSubTotal();
-				}else{
-					// Crea un objeto de carrito de compras
-					var tr = document.createElement("tr");
-					var td1 = document.createElement("td");
-					td1.innerHTML = '<input type="checkbox"  class="selectOne" />';
-					var td2 = document.createElement("td");
-					td2.className = "imgbackground";
-					td2.innerHTML = '<img src="'+ shop.shopImg +'" height="100" width="100"/>';
-					var td3 = document.createElement("td");
-					td3.className = "integral";
-					td3.innerHTML = shop.shopIntegral;
-					var td4 = document.createElement("td");
-					td4.innerHTML = shop.shopPrice;
-					var td5 = document.createElement("td");
-					td5.innerHTML = '<button οnclick="reduce(this)">-</button>&nbsp;'
-								+ '<input type="text" size="1" readonly="true" value="1"/>'
-								+ '&nbsp;<button οnclick="plus(this)">+</button>';
-					var td6 = document.createElement("td");
-					td6.className = "shopCount";
-					td6.innerHTML = parseInt(shop.shopPrice);
-					var td7 = document.createElement("td");
-					td7.innerHTML = '<a href="#" class="delete" οnclick="deleteChild(this)"> Eliminar </a>';
-					tr.appendChild(td1);
-					tr.appendChild(td2);
-					tr.appendChild(td3);
-					tr.appendChild(td4);
-					tr.appendChild(td5);
-					tr.appendChild(td6);
-					tr.appendChild(td7);
-					// Añadir al carrito
-					cartBox.appendChild(tr);
-				}
-				
-				// Precio total
-				allShopPriceTotal();
-				// puntos totales
-				allIntegralTotal();
-				// cambiar de color
-				changeBackground();
-			}
-
-            function addCarrito1(id) {
-
-
-                $.ajax({
-                    type: "post",
-                    // url:"{{ Route ('pro.api.detalle',"+h+")}}",
-                    url: 'apicarrito/' + id,
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    // dataType: 'json',
+                    //dataType: 'json',
                     success: function(res) {
-                        if (res == "ok") {
+                        console.log(res);
+                        if (res == "2") {
+                            $('#idProduc').val(id)
+                            $('#cant').val('')
+                        
+                            $('#exampleModal3').modal(
+                                'show'
+                                );
                             console.log("registrado");
-                        } else if (res == "bad") {
+                        } else if (res == "0") {
+                            $('#exampleModal2').modal(
+                                'show'
+                                );
                             console.log("no registrado");
+                        } else if (res == "1") {
+                            $('#exampleModal4').modal(
+                                'show'
+                                );
+                            console.log("sin direccion");
+                        }
+                        else {
+                            function crearTabla (lista){
+                                let stringTabla = "<tr><th>Direccion</th> <th>Barrio</th> <th>Departamento</th> <th>Municipio</th></tr>" ;
+
+                                for (let dir of lista) {
+                                    let fila = "<tr> <td>";
+                                    fila += dir.direccion;
+                                    fila += "</td>";
+
+                                    fila += "<td>";
+                                    fila += dir.barrio;
+                                    fila += "</td>";
+
+                                    fila += "<td>";
+                                    fila += dir.nombre_departamento;
+                                    fila += "</td>";
+
+                                    fila += "<td>";
+                                    fila += dir.nombre_municipio;
+                                    fila += "</td>"; 
+
+                                    fila += "<td>";
+                                    fila += "<a type='submit' data-bs-dismiss='modal' class='btn btn-primary' onclick='direccion(";
+                                    fila += dir.id_direccion
+                                    fila += ")'>selccionar</a>";
+                                    fila += "</td> </tr>";
+
+                                    stringTabla += fila;
+                                    
+                                }
+                                console.log(stringTabla);
+                                return stringTabla;
+                            }
+                            document.getElementById("direcciones").innerHTML = crearTabla(res);
+                            $('#exampleModal5').modal(
+                                'show'
+                                );
                         }
 
                     },
@@ -458,6 +527,13 @@ Compra Segura
                 });
 
             }
+            function direccion (id){
+                console.log("ok");
+                $('#idDireccion').val(id);
+                $('#exampleModal3').modal('show');
+            }
+
+
         </script>
 
 
@@ -471,24 +547,7 @@ Compra Segura
 @endsection
 
 @section('js')
-<script>
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-            )
-        }
-    })
+
 </script>
 
 <script>

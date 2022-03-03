@@ -25,19 +25,24 @@ Compra Segura
 						<th>SUBTOTAL</th>
 						<th>TOTAL</th>
 					</tr>
+					
 					<tr>
+					@foreach($productos as $p)
 						<td><input type="checkbox"  class="selectOne" /></td>
-						<td class="imgbackground"><img src="img/a.jpg" height="100" width="100"/></td>
-						<td class="integral">249</td>
-						<td>1999.00</td>
-						<td>
-							<button onclick="reduce(this)">-</button>
-							<input type="text" size="1" readonly="true" value="1"/>
+						<td class="imgbackground"><img src="{{asset($p->imagen_producto)}}" height="100" width="100"/></td>
+						
+						<td class="integral">{{$p->valor_actual}}</td>
+						<td>							<button onclick="reduce(this)">-</button>
+							<input type="text" readonly="true" value="{{$p->cantidad}}"/>
 							<button onclick="plus(this)">+</button>
 						</td>
-						<td class="shopCount">0</td>
+						<td><a onclick="singleSubTotal(this)">{{$p->valor_producto_venta}}</td>
+						<td><a onclick="allShopPriceTotal(this)"></td>
+						<td class="shopCount">{{$pedidos->valor_total_factura}}</td>
 						<td><a href="#" class="delete" onclick="deleteChild(this)">Eliminar</a></td>
+					@endforeach
 					</tr>
+					
 					
 				</table>
 			</div>

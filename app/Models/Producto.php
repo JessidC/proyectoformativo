@@ -25,6 +25,7 @@ class Producto extends Model
         'users_id'
     ];
 
+
     
     public $timestamps = false;
 

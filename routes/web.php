@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +17,25 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
     //return view('welcome');
 //});
+
+
+//FRONT
 Route::get('/', [App\Http\Controllers\FrontController::class, 'index'])->name('welcome');
 Route::get('/front/about', [App\Http\Controllers\FrontController::class, 'info'])->name('info');
 Route::get('/front/tecnologia', [App\Http\Controllers\FrontController::class, 'catTecno'])->name('tecno');
-Route::get('/front/Hogar', [App\Http\Controllers\FrontController::class, 'catHogar'])->name('hogar');
-Route::get('/front/verproductos', [App\Http\Controllers\FrontController::class, 'vistaProductos'])->name('vProductos');
+Route::get('/front/preguntas', [App\Http\Controllers\FrontController::class, 'vistapreguntas'])->name('preguntas');
+Route::post('/front/preguntas/{id?}', [App\Http\Controllers\ProductoController::class, 'api_detalle'])->name('prov.api.detalle');
+
+
+//VISTA PRODUCTOS
+Route::get('/front/vistaproductos/{id?}', [App\Http\Controllers\FrontController::class, 'vistaProductos'])->name('vProductos');
+Route::post('/front/vistaproductos/{id?}', [App\Http\Controllers\FrontController::class, 'apiprodxsub'])->name('api.prodxcap');
+
+
+//PQRS
+Route::get('/front/pqrs', [App\Http\Controllers\PqrsController::class, 'pecu'])->name('pecu');
+Route::post('/front/pqrs', [App\Http\Controllers\PqrsController::class, 'epqrs'])->name('pqrs.epqrs');
+
 Route::get('/front/carrito', [App\Http\Controllers\FrontController::class, 'vCarrito'])->name('carrito');
 Route::get('/front/otros', [App\Http\Controllers\FrontController::class, 'catOtro'])->name('otros');
 
@@ -53,8 +67,9 @@ Route::post('/productos/{id?}', [App\Http\Controllers\ProductoController::class,
 
 //CARRITO
 Route::get('/front/carrito', [App\Http\Controllers\CarritoController::class, 'index'])->name('cart');
-Route::post('/apicarrito/{id?}', [App\Http\Controllers\CarritoController::class, 'apiCarrito'])->name('apicarrito');
-
+Route::post('/apicarrito', [App\Http\Controllers\CarritoController::class, 'apiCarrito'])->name('apicarrito');
+Route::get('/carrito', [App\Http\Controllers\CarritoController::class, 'existenteCarrito'])->name('existenteCarrito');
+Route::post('/carrito/guardar', [App\Http\Controllers\CarritoController::class, 'guardar'])->name('cart.guardar');
 //CATEGORIAS
 
 Route::get('/categorias/categorias', [App\Http\Controllers\CategoriaController::class, 'categorias'])->name('categorias');
@@ -85,6 +100,7 @@ Route::get('/direcciones/direccion', [App\Http\Controllers\DireccionController::
 
 //PEDIDOS
 Route::get('/pedidos/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('pedidos');
+Route::get('/pedidos/{id?}/pdf', [App\Http\Controllers\PedidoController::class, 'pdf'])->name('pedidos.pdf');
 
 
 //OFERTAS

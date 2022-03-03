@@ -1,0 +1,98 @@
+
+   *{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  align: center;
+}
+p, label, span, table{
+	font-family: 'BrixSansRegular';
+	font-size: 10pt;
+  align: center;
+}
+.h2{
+	font-family: 'BrixSansBlack';
+	font-size: 20pt;
+  align: right;
+}
+.h3{
+	font-family: 'BrixSansBlack';
+	font-size: 12pt;
+	display: block;
+	background: #058;
+	color: #FFF;
+	text-align: center;
+	padding: 3px;
+	margin-bottom: 5px;
+  align: center;
+}
+#factura_detalle, #factura_head{
+	width: 125%;
+	margin-bottom: 20px;
+}
+.logo{
+	width: 15%;
+}
+.label_gracias{
+	font-family: verdana;
+	font-weight: bold;
+	font-style: italic;
+	text-align: center;
+	margin-top: 20px;
+}
+.textright{
+	text-align: center;
+}
+.textleft{
+	text-align: center;
+}
+.textcenter{
+	text-align: center;
+}
+.round{
+	border-radius: 10px;
+	border: 1px solid #0a4661;
+	overflow: hidden;
+	padding-bottom: 20px;
+}
+.round p{
+	padding: 0 20px;
+}
+#factura_detalle{
+  
+
+}
+#factura_detalle thead th{
+	background: #058;
+	color: #FFF;
+	padding: 5px;
+  text-align: center;
+  width: 100%;
+  
+}
+#detalle_productos tr:nth-child(even) {
+    background: #ededed;
+    width: 30%;
+    text-align: center;
+}
+#detalle_totales span{
+  width: 30%;
+	font-family: 'BrixSansBlack';
+  text-align: right;
+}
+.informacion{
+	width: 30%;
+	text-align: center;
+}
+.factura{
+	width: 40%;
+  text-align: center;
+
+	}
+#page_pdf{
+	width:60%;
+	margin: 20px auto 20px auto;
+  text-align: center;
+  align: center;
+	}
+   

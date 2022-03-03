@@ -23,13 +23,13 @@ class UsuarioController extends Controller
             Usuario::create([
             
                 'name' => $request->name,
-                'celular' => $request->celular,
-                'usuario' => $request->usuario,
-                'contrasena' =>  Hash::make($request->contrasena),
                 'documento' => $request->documento,
+                'telefono' => $request->telefono,
                 'email' => $request->email,
-                'tipos_id_tipo' => $request->tipos_id_tipo,
-                'estado_a_i_id'=> $request->id
+                'password' =>  Hash::make($request->contrasena),
+                'tipos_id_tipo' => 4,
+                'fidelizacion_id'=> 1,
+                'estado'=> 1
             ]);
         return redirect()->route('users');
     }

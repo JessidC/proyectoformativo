@@ -15,8 +15,8 @@ class Subcategoria extends Model
         'id_categoria',
         'nombre_subcategoria'
     ];
-
-    public $timestamps = false;
+    
+ 
 
     protected $primaryKey = 'id_subcategoria';
 }

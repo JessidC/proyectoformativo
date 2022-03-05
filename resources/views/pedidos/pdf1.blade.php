@@ -1,22 +1,15 @@
-@extends('adminlte::page')
-
-@section('title', 'Dashboard')
-
-@section('content_header')
-    <h1>Dashboard</h1>
-@stop
-
-@section('content')
-<div class="card">
-        <div class="card-header">
-            <h1>Bienvenido a la seccion de pedidos</h1>
-            <a class="btn btn-primary" href="{{ Route ('pedidos.pdf1')}}" role="button">Exportar</a>
-
-            <span></span>
-            <br>
-            <p></p>
-
-            <table class="table" id="tbpedido">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Document </title>
+       <!-- <link href="{{ public_path('css/app.css') }}" rel="stylesheet"> -->
+       <link rel="{{ public_path('css/app.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<table class="table" id="tbpedido">
                 <thead>
                     <tr>
                         <th scope="col">id</th>
@@ -39,28 +32,9 @@
                             <td>{{ $pe->num_factura }}</td>
                             <td>{{ $pe->fecha_fact }}</td>
                             <td>{{ $pe->estado }}</td>
-                            <td>
-                                <a class="btn btn-success btn-sm" href=""
-                                    role="button">Editar</a>
-                                <a class="btn btn-success btn-sm" href="{{ Route ('pedidos.pdf', $pe->id_pedidos)}}"
-                                    role="button">Facturar</a>
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div>
-    </div>
-@stop
-
-@section('css')
-
-@stop
-
-@section('js')
-<script>
-        $(document).ready(function() {
-            $('#tbpedido').DataTable();
-        });
-    </script>
-@stop
+</body>
+</html>

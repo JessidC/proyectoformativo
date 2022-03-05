@@ -33,7 +33,7 @@ class CategoriaController extends controller
     public function buscar(Request $request, $id)
     {
             $categoria = Categoria::findOrFail($id);
-
+            
             return view('categorias.editar', compact('categoria'));
     }
 

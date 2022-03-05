@@ -15,6 +15,9 @@ use Exception;
 
 class CarritoController extends controller
 {
+    
+    
+
     public function index()
     {
         return view('front.carrito');

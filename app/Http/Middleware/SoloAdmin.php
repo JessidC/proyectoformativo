@@ -17,7 +17,7 @@ class soloAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth::user()->tipos_id_tipo == 4) :
+        if (Auth::user()->tipos_id_tipo == 4) :
             return $next($request);
         endif;
 

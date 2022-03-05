@@ -6,6 +6,7 @@ use App\Models\Producto;
 use App\Models\Subcategoria;
 use App\Models\Marca;
 use App\Models\User;
+use PDF;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -97,6 +98,14 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
         
         return ($producto);
+    }
+
+    public function exportar()
+    {
+        $productos = Producto::all();
+        $pdf = PDF::loadView('productos.exportar',['productos'=>$productos]);
+        return $pdf->stream();
+       //return view('productos.exportar', compact('productos'));  
     }
 
 

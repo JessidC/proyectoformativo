@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
-use SweetAlert;
+
 use App\Models\Categoria;
 use App\Models\Subcategoria;
 

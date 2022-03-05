@@ -63,6 +63,7 @@ Route::get('/productos/{id?}/editar', [App\Http\Controllers\ProductoController::
 Route::get('/productos/{id?}/borrar', [App\Http\Controllers\ProductoController::class, 'borrar'])->name('pro.borrar');
 Route::get('/productos/actualizar', [App\Http\Controllers\ProductoController::class, 'actualizar'])->name('pro.actualizar');
 Route::post('/productos/{id?}', [App\Http\Controllers\ProductoController::class, 'api_detalle'])->name('pro.api.detalle');
+Route::get('Productos/exportar', [App\Http\Controllers\ProductoController::class, 'exportar'])->name('productos.exportar');
 
 
 //CARRITO
@@ -101,7 +102,7 @@ Route::get('/direcciones/direccion', [App\Http\Controllers\DireccionController::
 //PEDIDOS
 Route::get('/pedidos/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('pedidos');
 Route::get('/pedidos/{id?}/pdf', [App\Http\Controllers\PedidoController::class, 'pdf'])->name('pedidos.pdf');
-
+Route::get('/pedidos/pdf1', [App\Http\Controllers\PedidoController::class, 'pdf1'])->name('pedidos.pdf1');
 
 //OFERTAS
 Route::get('/ofertas', [App\Http\Controllers\OfertaController::class, 'ofertas'])->name('ofertas');
@@ -118,3 +119,7 @@ Route::get('/fidelizaciones', [App\Http\Controllers\FidelizacionController::clas
 
 //APIMOVILE
 Route::resource('apimovile', ApiMovileController::class);
+
+//DIRECCIONES
+Route::get('/Direcciones/direccion', [App\Http\Controllers\DireccionController::class, 'index'])->name('direccion');
+Route::get('/Direcciones/{id?}/editar', [App\Http\Controllers\DireccionController::class, 'buscar'])->name('dir.buscar');

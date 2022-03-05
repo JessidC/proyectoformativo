@@ -8,39 +8,39 @@ Compra Segura
 
 
 <div id="info-table">
-				<h1>Carrito de Compras</h1>
-				<table id="mytable"  width="1200" align="center">
+<h1>Carrito de Compras</h1>
+<table id="mytable"  width="1200" align="center">
 
 <div class="container px-4 px-lg-5">    
 <div class="alert alert-primary text-center">
     
 </div>
+
 </div>
-</div>
-					<tr>
-						<th><input type="checkbox" id="allCheck" onclick="selectAll()"/>SELECCIONAR TODO</th>
-						<th>COMPRA SEGURA</th>
-						<th>PRECIO C/U</th>
-						<th>CANTIDAD</th>
-						<th>SUBTOTAL</th>
-						<th>TOTAL</th>
-					</tr>
+		<tr>
+			<th><input type="checkbox" id="allCheck" onclick="selectAll()"/>SELECCIONAR TODO</th>
+			<th>COMPRA SEGURA</th>
+			<th>PRECIO C/U</th>
+			<th>CANTIDAD</th>
+			<th>SUBTOTAL</th>
+			<th>TOTAL</th>
+		</tr>
 					
-					<tr>
-					@foreach($productos as $p)
-						<td><input type="checkbox"  class="selectOne" /></td>
-						<td class="imgbackground"><img src="{{asset($p->imagen_producto)}}" height="100" width="100"/></td>
+		<tr>
+			@foreach($productos as $p)
+				<td><input type="checkbox"  class="selectOne" /></td>
+				<td class="imgbackground"><img src="{{asset($p->imagen_producto)}}" height="100" width="100"/></td>
 						
-						<td class="integral">{{$p->valor_actual}}</td>
-						<td>							<button onclick="reduce(this)">-</button>
-							<input type="text" readonly="true" value="{{$p->cantidad}}"/>
-							<button onclick="plus(this)">+</button>
-						</td>
-						<td><a onclick="singleSubTotal(this)">{{$p->valor_producto_venta}}</td>
-						<td><a onclick="allShopPriceTotal(this)"></td>
-						<td class="shopCount">{{$pedidos->valor_total_factura}}</td>
-						<td><a href="#" class="delete" onclick="deleteChild(this)">Eliminar</a></td>
-					@endforeach
+				<td class="integral">{{$p->valor_actual}}</td>
+				<td><button onclick="reduce(this)">-</button>
+				<input type="text" readonly="true" value="{{$p->cantidad}}"/>
+					<button onclick="plus(this)">+</button>
+				</td>
+					<td><a onclick="singleSubTotal(this)"></td>
+					<td><a onclick="allShopPriceTota(this)"></td>
+					<td class="shopCount"></td>
+					<td><a href="#" class="delete" onclick="deleteChild(this)">Eliminar</a></td>
+			@endforeach
 					</tr>
 					
 					
@@ -66,6 +66,9 @@ Compra Segura
         <script src="card/js/var.js"></script>
 
 @endsection
+
+</div>
+</div>
 
 @section('css')
 <style>

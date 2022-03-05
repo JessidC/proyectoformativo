@@ -32,21 +32,17 @@ class PedidoController extends controller
 
     
 
-    public function CrearPdf()
+    public function pdf1()
     {
       
        //$pedidos= Pedido:: join('direccion','direccion.id_direccion','pedidos.id_direccion')->get();
-       $pedidos = pedido::all();
+       $pedidos = Pedido::all();
        //$pedidos = array('id_pedidos'=>'havcssam');
 
 
        //view()->share('pdf',$pedidos);
-       $pdf = PDF::loadView('pedidos.pdf', compact('pedidos'));
+       $pdf = PDF::loadView('pedidos.pdf1', ['pedidos'=>$pedidos]);
        return $pdf->download('pdf_file.pdf');
-   
-        
-       
+          
     }
-
-
 }

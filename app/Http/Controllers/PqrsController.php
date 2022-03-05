@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class PqrsController extends controller
 {
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
         
-    }
+    }*/
     public function pecu ()
     {
         $pqrs = new Pqrs();

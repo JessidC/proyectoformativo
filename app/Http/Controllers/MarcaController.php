@@ -51,21 +51,14 @@ class MarcaController extends controller
     public function eliminar($id)
     {
 
-        $activo = Estado::where('estado','=','activo')->first();
-        $inactivo = Estado::where('estado','=','inactivo')->first();
-
         $marca = Marca::findOrFail($id);
-        if ($marca->estado_a_i_id == $activo->id)
-            $marca->estado_a_i_id = $inactivo->id;
+        if ($marca->estado == 1)
+            $marca->estado = 0;
         else
-            $marca->estado_a_i_id = $activo->id;
+            $marca->estado = 1;
         $marca->save();
 
         return redirect()->route('marcas');
     }
-
-
-
-
 
 }

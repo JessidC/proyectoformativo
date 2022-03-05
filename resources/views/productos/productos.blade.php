@@ -11,7 +11,7 @@
       <div class="card-header">
         <h1>Bienvenido a la seccion de productos</h1>
         <a class="btn btn-primary" href="{{ Route ('pro.agregar')}}" role="button">Crear Producto</a>
-        
+        <a class="btn btn-primary" href="{{ Route ('productos.exportar')}}" role="button">Exportar</a>
         <span></span>
         <br>
         <p></p>
@@ -20,7 +20,6 @@
           <thead>
             <tr>
               <th scope="col">id</th>
-              <th scope="col">Subcategoria</th>
               <th scope="col">Nombre</th>
               <th scope="col">Cantidad</th>
               <th scope="col">Precio</th>
@@ -37,7 +36,6 @@
               @foreach ($productos as $pro)
             <tr>
               <th scope="row">{{$pro->id_producto}}</th>
-              <td>{{$pro->nombre_subcategoria}}</td>
               <td>{{$pro->nombre_producto}}</td>
               <td>{{$pro->cantidad_existente}}</td>
               <td>{{$pro->valor_actual}}</td>

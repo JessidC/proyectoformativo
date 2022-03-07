@@ -71,4 +71,11 @@ class FrontController extends Controller
         return view ('front.carrito',compact('productos','categorias','subcategoria'));
     }
 
+    public function api_detallevprod($id)
+    {
+        $producto = Producto::findOrFail($id);
+        
+        return ($producto);
+    }
+
 }

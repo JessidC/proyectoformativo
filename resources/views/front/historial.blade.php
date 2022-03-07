@@ -2,11 +2,11 @@
 
 @section('titulo')
 Compra Segura
-
 @endsection
 
 @section('css')
 <style>
+   
     /* Clear floats after the columnas */
     .fila:after {
         content: "";
@@ -43,11 +43,20 @@ Compra Segura
       margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
   }
 }
+	
+
 </style>
+
+<!-- Bootstrap icons-->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 @endsection
 
 @section('content')
+<!DOCTYPE html>
+    <html lang="en">
 
+    
 <nav class="navbar navbar-expand-lg  navbar-light bg-light">
 <div class="container px-20 px-lg-20">
 <div class="container-fluid">
@@ -66,9 +75,7 @@ Compra Segura
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorias</a>
       <ul class="dropdown-menu">
       @foreach ($categorias as $ca)
-      @if($ca->estado=="1")
         <li> <a class="dropdown-item" value="{{$ca->id_categoria}}">{{$ca->nombre_categoria}} &raquo; </a>
-        @endif 
           <ul class="submenu dropdown-menu">       
           @foreach ($subcategoria as $sub)
           @if( $sub->id_categoria == $ca->id_categoria)
@@ -88,7 +95,7 @@ Compra Segura
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{{ Route ('pecu') }}">PQRS</a></li>
-      <li><a class="dropdown-item" href="{{ Route ('preguntas') }}">Preguntas frecuentes</a></li>
+      <li><a class="dropdown-item" href="{{ Route ('pqrs.epqrs') }}">Preguntas frecuentes</a></li>
       </ul>
     </div>  
     </li>
@@ -129,6 +136,7 @@ Compra Segura
                 
         </div>
     
+    
 </ul>
 
 </div>
@@ -143,62 +151,49 @@ Compra Segura
 </div>
 
 
+@section('content')
+<div class="card">
+        <div class="card-header">
+            <h1>Pedidos</h1>
 
+            <span></span>
+            <br>
+            <p></p>
 
-</div>
-    <header class="section page-header"></header> 
-    <header class=" py-1">
-    <div class="container px-4 px-lg-5 my-3">
-
-    <div class="card mb-3 text-center">
-    <img class="card-img-top" src="{{asset('img/tienda.png')}}" height="400px" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title" >Acerca de Nosotros </h5>
-        <p class="card-text">Somos una empresa Colombiana que brindamos el servicio y venta de productos en linea que se creo en el año 2020, por los aprendices del ADSI 184</p>
-        <p class="card-text"><small class="text-muted">Publicado el 11 de Febrero del 2021</small></p>
-    </div>
-    </div>
-
-    <div class="container px-4 px-lg-5"> 
-        <div class="alert alert-primary text-center">
-        
-            <form>
-            <h1> CONTACTENOS</H1>
-            <div class="form-group text-left">
-                <p>
-                <label for="nombre">Nombre </label>
-                <input type="text" class="form-control" id="nombre" placeholder="Nombre completo">
-                <p>
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                <p>
-                <label for="tel">Celular</label>
-                <input type="number" class="form-control" id="tel" placeholder="xxx-xxx-xx-xx">
-            </div>
-                        
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1"> </label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"placeholder="Escriba aqui su mensaje" ></textarea>
-            </div>
-            <div class="form-group">
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label text-left" for="gridCheck">
-                    Acepta terminos y condiciones para el manejo de datos personales mediante la ley 1581 del 2008
-                </label>
-                </div>
-            </div>
-  <button type="submit" class="btn btn-primary">Enviar</button>
-
-
-            </form>
-        
-        </div>
+            <table class="table" id="tbpedido">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Fecha de Pedido</th>
+                        <th scope="col">valor</th>
+                        <th scope="col">N factura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($pedidos as $pe)
+                        <tr>
+                            <th scope="row">{{ $pe->id_pedidos }}</th>
+                            <td>{{ $pe->fecha_pedido }}</td>
+                            <td>{{ $pe->valor_total_factura }}</td>
+                            <td>{{ $pe->num_factura }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
+@stop
 
-@endsection
+
+
 @section('js')
+<script>
+        $(document).ready(function() {
+            $('#tbpedido').DataTable();
+        });
+</script>
+
+
 <script>
 
 document.addEventListener("DOMContentLoaded", function(){

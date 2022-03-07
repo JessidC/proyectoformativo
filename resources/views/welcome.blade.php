@@ -57,7 +57,8 @@ Compra Segura
 @endsection
 
 @section('content')
-<!-- Navigation-->
+<!DOCTYPE html>
+<html lang="en">
 
 <nav class="navbar navbar-expand-lg  navbar-light bg-light">
 <div class="container px-20 px-lg-20">
@@ -68,7 +69,7 @@ Compra Segura
 </button>
 </div>
 
-<div class="container px-5 px-lg-5">
+<div class="container px-15 px-lg-15">
 <div class="collapse navbar-collapse " id="main_nav">
   <ul class="navbar-nav">
     <li class="nav-item active"> <a class="nav-link" href="{{ Route ('welcome') }}">Home </a> </li>
@@ -77,7 +78,9 @@ Compra Segura
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorias</a>
       <ul class="dropdown-menu">
       @foreach ($categorias as $ca)
+      @if($ca->estado=="1")
         <li> <a class="dropdown-item" value="{{$ca->id_categoria}}">{{$ca->nombre_categoria}} &raquo; </a>
+        @endif 
           <ul class="submenu dropdown-menu">       
           @foreach ($subcategoria as $sub)
           @if( $sub->id_categoria == $ca->id_categoria)
@@ -87,22 +90,23 @@ Compra Segura
           </ul>
         </li>
         @endforeach
-
-
         
     </ul>
-      
-    </li>
-    <li class="nav-item"><a class="nav-link" href="">Mi Perfil</a></li><li class="nav-item dropdown" id="myDropdown">
+    <li class="nav-item"><a class="nav-link" href="/proyectoformativo/public/perfil">Mi Perfil</a></li>
+
+    <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown"> 
+    
+</li>
+    <li class="nav-item dropdown" id="myDropdown">
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{{ Route ('pecu') }}">PQRS</a></li>
-      <li><a class="dropdown-item" href="{{ Route ('preguntas') }}">Preguntas frecuentes</a></li>
+      <li><a class="dropdown-item" href="{{ Route ('pqrs.epqrs') }}">Preguntas frecuentes</a></li>
       </ul>
     </div>  
     </li>
 
-    <li class="nav-item dropdown">
+    <li class="nav dropdown">
         <button class="btn btn-outline-dark" height="70px" type="button"
             width="70px" href="#" id="dropdown01" data-toggle="dropdown">
                 <i class="bi-cart-fill me-1"></i>
@@ -121,57 +125,21 @@ Compra Segura
 
                     </thead>
                     <tbody>
-                    @foreach($productos as $pro)
+                    
                     <tr>
                                         
-                    <td><img src="{{asset($pro->imagen_producto)}}" height="100" width="100" alt="" ></td>
-                    <td>{{$pro->nombre_producto}}</td>
-                    <td>{{$pro->valor_actual}}</td>
+                    <td><img src="" height="100" width="100" alt="" ></td>
+                    <td></td>
+                    <td></td>
                     </tr>
                     </tbody>
                 </table>
 
                 <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
                 <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-                @endforeach
-
-                <script>
-document.addEventListener("DOMContentLoaded", function(){
-// make it as accordion for smaller screens
-if (window.innerWidth < 992) {
-
-  // close all inner dropdowns when parent is closed
-  document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
-    everydropdown.addEventListener('hidden.bs.dropdown', function () {
-      // after dropdown is hidden, then find all submenus
-        this.querySelectorAll('.submenu').forEach(function(everysubmenu){
-          // hide every submenu as well
-          everysubmenu.style.display = 'none';
-        });
-    })
-  });
-
-  document.querySelectorAll('.dropdown-menu a').forEach(function(element){
-    element.addEventListener('click', function (e) {
-        let nextEl = this.nextElementSibling;
-        if(nextEl && nextEl.classList.contains('submenu')) {	
-          // prevent opening link if link needs to open dropdown
-          e.preventDefault();
-          if(nextEl.style.display == 'block'){
-            nextEl.style.display = 'none';
-          } else {
-            nextEl.style.display = 'block';
-          }
-
-        }
-    });
-  })
-}
-// end if innerWidth
-}); 
-</script>
+                
         </div>
-    </li>
+    
     
 </ul>
 
@@ -184,8 +152,6 @@ if (window.innerWidth < 992) {
 <!-- container-fluid.// -->
 </div><!-- centrado.// -->
 </nav>
-</div>
-
 
 
 <!--Slayer -->
@@ -198,13 +164,13 @@ if (window.innerWidth < 992) {
         </ol>
         <div class="carousel-inner ">
             <div class="carousel-item active ">
-                <img class="d-block w-100 " src="{{asset('img/1.png')}}" style="height: 500px;" alt="First slide">
+                <img class="d-block w-100 " src="{{asset('img/imagen1.png')}}" style="height: 350px;" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{asset('img/2.png')}}" style="height: 500px;" alt="Second slide">
+                <img class="d-block w-100" src="{{asset('img/imagen2.png')}}" style="height: 350px;" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="{{asset('img/3.png')}}" style="height: 500px;" alt="Third slide">
+                <img class="d-block w-100" src="{{asset('img/imagen3.png')}}" style="height: 350px;" alt="Third slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -308,12 +274,7 @@ if (window.innerWidth < 992) {
             </div>
             @endforeach
 
-            <div class="alert alert-primary text-center">
-                <h2>Nuestros productos</h2>
-            </div>
-        </div>
-
-
+           
         <!-- Modal -->
         <div class="d-flex justify-content-center">
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -454,9 +415,7 @@ if (window.innerWidth < 992) {
         
         <script>
             function datos(h) {
-                $('#exampleModal1').modal(
-                                'show'
-                                );
+                $('#exampleModal1').modal('show');
                 $('#tituloP').val(' ')
                 $('#valor').val(' ')
                 $('#cantidad').val(' ')
@@ -580,13 +539,47 @@ if (window.innerWidth < 992) {
 </section>
 </div>
 </div>
-</section>
 
+</section>
+</html>
 @endsection
 
 @section('js')
+<script>
 
+document.addEventListener("DOMContentLoaded", function(){
+// make it as accordion for smaller screens
+if (window.innerWidth < 992) {
+
+  // close all inner dropdowns when parent is closed
+  document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+    everydropdown.addEventListener('hidden.bs.dropdown', function () {
+      // after dropdown is hidden, then find all submenus
+        this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+          // hide every submenu as well
+          everysubmenu.style.display = 'none';
+        });
+    })
+  });
+
+  document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+    element.addEventListener('click', function (e) {
+        let nextEl = this.nextElementSibling;
+        if(nextEl && nextEl.classList.contains('submenu')) {	
+          // prevent opening link if link needs to open dropdown
+          e.preventDefault();
+          if(nextEl.style.display == 'block'){
+            nextEl.style.display = 'none';
+          } else {
+            nextEl.style.display = 'block';
+          }
+
+        }
+    });
+  })
+}
+// end if innerWidth
+}); 
 </script>
-
 
 @stop

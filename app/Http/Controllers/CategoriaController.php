@@ -39,19 +39,19 @@ class CategoriaController extends controller
 
     public function borrar($id)
     {
-            $categoria = Categoria::findOrFail($id);
+        $categoria = Categoria::findOrFail($id);
             
-            if ($categoria->estado == "1")
-                
-                $categoria->estado = "0";
-                
-            else
-                $categoria->estado = "1";
-                
-            $categoria->save();
+        if ($categoria->estado == "1")
             
+            $categoria->estado = "0";
+            
+        else
+            $categoria->estado = "1";
+            
+        $categoria->save();
+        
 
-            return redirect()->route('categorias');
+        return redirect()->route('categorias');
 
     }
 

@@ -133,7 +133,8 @@ Compra Segura
 @endsection
 
 @section('content')
-
+<!DOCTYPE html>
+<html lang="en">
 
 <nav class="navbar navbar-expand-lg  navbar-light bg-light">
 <div class="container px-20 px-lg-20">
@@ -144,7 +145,7 @@ Compra Segura
 </button>
 </div>
 
-<div class="container px-5 px-lg-5">
+<div class="container px-15 px-lg-15">
 <div class="collapse navbar-collapse " id="main_nav">
   <ul class="navbar-nav">
     <li class="nav-item active"> <a class="nav-link" href="{{ Route ('welcome') }}">Home </a> </li>
@@ -153,11 +154,13 @@ Compra Segura
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorias</a>
       <ul class="dropdown-menu">
       @foreach ($categorias as $ca)
+      @if($ca->estado=="1")
         <li> <a class="dropdown-item" value="{{$ca->id_categoria}}">{{$ca->nombre_categoria}} &raquo; </a>
+        @endif 
           <ul class="submenu dropdown-menu">       
           @foreach ($subcategoria as $sub)
           @if( $sub->id_categoria == $ca->id_categoria)
-            <li><a class="dropdown-item" href="{{ Route ('vProductos')}}">{{$sub->nombre_subcategoria}}</a></li>
+            <li><a class="dropdown-item" href="{{ Route ('vProductos', $sub->id_subcategoria)}}">{{$sub->nombre_subcategoria}}</a></li>
             @endif       
             @endforeach
           </ul>
@@ -165,9 +168,12 @@ Compra Segura
         @endforeach
         
     </ul>
-      
-    </li>
-    <li class="nav-item"><a class="nav-link" href="">Mi Perfil</a></li><li class="nav-item dropdown" id="myDropdown">
+    <li class="nav-item"><a class="nav-link" href="/proyectoformativo/public/perfil">Mi Perfil</a></li>
+
+    <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown"> 
+    
+</li>
+    <li class="nav-item dropdown" id="myDropdown">
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{{ Route ('pecu') }}">PQRS</a></li>
@@ -176,7 +182,7 @@ Compra Segura
     </div>  
     </li>
 
-    <li class="nav-item dropdown">
+    <li class="nav dropdown">
         <button class="btn btn-outline-dark" height="70px" type="button"
             width="70px" href="#" id="dropdown01" data-toggle="dropdown">
                 <i class="bi-cart-fill me-1"></i>
@@ -195,21 +201,21 @@ Compra Segura
 
                     </thead>
                     <tbody>
-                    @foreach($productos as $pro)
+                    
                     <tr>
                                         
-                    <td><img src="{{asset($pro->imagen_producto)}}" height="100" width="100" alt="" ></td>
-                    <td>{{$pro->nombre_producto}}</td>
-                    <td>{{$pro->valor_actual}}</td>
+                    <td><img src="" height="100" width="100" alt="" ></td>
+                    <td></td>
+                    <td></td>
                     </tr>
                     </tbody>
                 </table>
 
                 <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
                 <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-                @endforeach
+                
         </div>
-    </li>
+    
     
 </ul>
 

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
-use PDF; 
+use App\Models\Categoria;
+use App\Models\Subcategoria;
+use App\Models\User;
+use PDF;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PedidoController extends controller
@@ -45,4 +49,28 @@ class PedidoController extends controller
        return $pdf->download('pdf_file.pdf');
           
     }
+
+
+    public function historialpedidos()
+    {
+        $categorias = Categoria::all();
+        $subcategoria = Subcategoria::all();
+        $user=Auth::user ();
+ 
+      
+     if($user){
+
+        $pedidos = User::select('id_pedidos','fecha_pedido','valor_total_factura', 'num_factura')
+        ->join('direccion as d', 'd.id_usuario', 'users.id')
+        ->join('pedidos as p', 'p.id_direccion', 'd.id_direccion')
+        ->where('users.id', $user->id)
+        ->where('p.estado', 3)
+        ->get();
+
+        return view('front.historial', compact('pedidos','categorias','subcategoria'));
+        
+     }
+    
+    }
+
 }

@@ -10,6 +10,7 @@ class SubcategoriaController extends controller
 {
     public function subcategorias()
     {
+        $subcategoria = Subcategoria::all();
         $subcategorias = Subcategoria::join('categoria', 'categoria.id_categoria', 'subcategoria.id_categoria')->get();
 
         return view('subcategorias.subcategorias', compact('subcategorias'));
@@ -17,8 +18,7 @@ class SubcategoriaController extends controller
 
     public function agregar()
     {
-        $categorias = Categoria::all();
-        return view('subcategorias.crear', compact('categorias'));
+        return view('subcategorias.crear');
     }
 
     public function guardar(Request $request)
@@ -27,6 +27,7 @@ class SubcategoriaController extends controller
         Subcategoria::create([
             'nombre_subcategoria' => $request->nombre,
             'id_categoria' => $request->categoria,
+            'estado' => 1
 
         ]);
 
@@ -57,13 +58,23 @@ class SubcategoriaController extends controller
         return redirect()->route('subca');
     }
 
-    public function eliminar($id)
+        public function eliminar($id)
     {
-        $subcategoria = Subcategoria::findOrFail($id);
-        $subcategoria->delete();
-        return redirect()->route('subca');
-    }
+            $subcategoria = Subcategoria::findOrFail($id);
+            
+            if ($subcategoria->estado =="1")
+                
+                $subcategoria->estado = "0";
+                
+            else
+                $subcategoria->estado = "1";
+                
+            $subcategoria->save();
+            
 
+            return redirect()->route('subca');
+
+    }
 
 
 }

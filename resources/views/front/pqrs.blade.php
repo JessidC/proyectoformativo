@@ -47,10 +47,9 @@ Compra Segura
 @endsection
 
 @section('content')
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    
 <nav class="navbar navbar-expand-lg  navbar-light bg-light">
 <div class="container px-20 px-lg-20">
 <div class="container-fluid">
@@ -60,7 +59,7 @@ Compra Segura
 </button>
 </div>
 
-<div class="container px-5 px-lg-5">
+<div class="container px-15 px-lg-15">
 <div class="collapse navbar-collapse " id="main_nav">
   <ul class="navbar-nav">
     <li class="nav-item active"> <a class="nav-link" href="{{ Route ('welcome') }}">Home </a> </li>
@@ -69,7 +68,9 @@ Compra Segura
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorias</a>
       <ul class="dropdown-menu">
       @foreach ($categorias as $ca)
+      @if($ca->estado=="1")
         <li> <a class="dropdown-item" value="{{$ca->id_categoria}}">{{$ca->nombre_categoria}} &raquo; </a>
+        @endif 
           <ul class="submenu dropdown-menu">       
           @foreach ($subcategoria as $sub)
           @if( $sub->id_categoria == $ca->id_categoria)
@@ -81,23 +82,29 @@ Compra Segura
         @endforeach
         
     </ul>
-      
-    </li>
-    <li class="nav-item"><a class="nav-link" href="">Mi Perfil</a></li><li class="nav-item dropdown" id="myDropdown">
+    <li class="nav-item"><a class="nav-link" href="/proyectoformativo/public/perfil">Mi Perfil</a></li>
+
+    <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown">
+        
+    <li class="nav-item dropdown" id="myDropdown">
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{{ Route ('pecu') }}">PQRS</a></li>
-      <li><a class="dropdown-item" href="{{ Route ('pqrs.epqrs') }}">Preguntas frecuentes</a></li>
+      <li><a class="dropdown-item" href="{{ Route ('preguntas') }}">Preguntas frecuentes</a></li>
       </ul>
     </div>  
     </li>
 
-    <li class="nav-item dropdown">
-        <button class="btn btn-outline-dark" height="70px" type="button"
+    <button class="btn btn-outline-dark" height="70px" type="button"
             width="70px" href="#" id="dropdown01" data-toggle="dropdown">
                 <i class="bi-cart-fill me-1"></i>
                     Carrito
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+    </button>
+    <div>
+    <li>
+    
+
         <div id="carrito" class="dropdown-menu" aria-labelledby="navbarCollapse">
                                     
                 <table id="lista-carrito" class="table">
@@ -123,7 +130,7 @@ Compra Segura
                 <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
                 
         </div>
-    </li>
+    
     
 </ul>
 
@@ -137,6 +144,9 @@ Compra Segura
 </div><!-- centrado.// -->
 </nav>
 </div>
+
+
+
 
     <header class="section page-header"></header> 
     <header class=" py-1">

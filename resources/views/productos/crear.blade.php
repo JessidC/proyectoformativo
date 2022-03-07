@@ -39,7 +39,7 @@
     <label class="form-label">Valor</label>
     <div class="input-group">
       <span class="input-group-text" id="inputGroupPrepend2">$</span>
-      <input type="number" class="form-control" name="valor" >
+      <input type="number" class="form-control" min=0 name="valor" >
     </div>
   </div>
 
@@ -59,11 +59,13 @@
       <label for="exampleFormControlSelect1">Marca</label>
         <select class="form-control" name="marca">
           @foreach ($marcas as $mar)
-            <option value="{{$mar->id}}" >{{$mar->nombre_marcas}}</option>
+         @if($mar->estado=="1"){
+          <option value="{{$mar->id}}" >{{$mar->nombre_marcas}}</option>
+         }
+         @endif
           @endforeach
         </select>
   </div>
-
 
 
   <div class="col-md-4">

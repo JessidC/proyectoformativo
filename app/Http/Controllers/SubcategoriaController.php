@@ -10,8 +10,10 @@ class SubcategoriaController extends controller
 {
     public function subcategorias()
     {
-        $subcategoria = Subcategoria::all();
-        $subcategorias = Subcategoria::join('categoria', 'categoria.id_categoria', 'subcategoria.id_categoria')->get();
+      
+        $subcategorias = Subcategoria::select('subcategoria.estado as estado', 'id_subcategoria', 'nombre_subcategoria', 'nombre_categoria')
+        ->join('categoria as c', 'c.id_categoria', 'subcategoria.id_categoria')
+        ->get();
 
         return view('subcategorias.subcategorias', compact('subcategorias'));
     }

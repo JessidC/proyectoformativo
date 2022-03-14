@@ -48,6 +48,8 @@ Compra Segura
 
 @section('content')
 
+<!DOCTYPE html>
+<html lang="en">
 
 <nav class="navbar navbar-expand-lg  navbar-light bg-light">
 <div class="container px-20 px-lg-20">
@@ -58,7 +60,7 @@ Compra Segura
 </button>
 </div>
 
-<div class="container px-5 px-lg-5">
+<div class="container px-15 px-lg-15">
 <div class="collapse navbar-collapse " id="main_nav">
   <ul class="navbar-nav">
     <li class="nav-item active"> <a class="nav-link" href="{{ Route ('welcome') }}">Home </a> </li>
@@ -67,77 +69,55 @@ Compra Segura
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorias</a>
       <ul class="dropdown-menu">
       @foreach ($categorias as $ca)
+      @if($ca->estado=="1")
         <li> <a class="dropdown-item" value="{{$ca->id_categoria}}">{{$ca->nombre_categoria}} &raquo; </a>
+        @endif 
           <ul class="submenu dropdown-menu">       
           @foreach ($subcategoria as $sub)
           @if( $sub->id_categoria == $ca->id_categoria)
-            <li><a class="dropdown-item"  href="{{ Route ('vProductos', $sub->id_subcategoria)}}">{{$sub->nombre_subcategoria}}</a></li>
-         
-            @endif  
+            <li><a class="dropdown-item" href="{{ Route ('vProductos', $sub->id_subcategoria)}}">{{$sub->nombre_subcategoria}}</a></li>
+            @endif       
             @endforeach
           </ul>
         </li>
         @endforeach
         
     </ul>
-      
-    </li>
-    <li class="nav-item"><a class="nav-link" href="">Mi Perfil</a></li><li class="nav-item dropdown" id="myDropdown">
+    <li class="nav-item"><a class="nav-link" href="perfil">Mi Perfil</a></li>
+
+    <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown"> 
+    
+</li>
+    <li class="nav-item dropdown" id="myDropdown">
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{{ Route ('pecu') }}">PQRS</a></li>
-      <li><a class="dropdown-item" href="{{ Route ('pqrs.epqrs') }}">Preguntas frecuentes</a></li>
+      <li><a class="dropdown-item" href="{{ Route ('preguntas') }}">Preguntas frecuentes</a></li>
       </ul>
     </div>  
     </li>
 
-    <li class="nav-item dropdown">
-        <button class="btn btn-outline-dark" height="70px" type="button"
-            width="70px" href="#" id="dropdown01" data-toggle="dropdown">
+        <li class="nav dropdown">
+        <a class="btn btn-outline-dark" height="70px" type="button"
+            width="70px" id="dropdown01" href="{{ Route ('existenteCarrito') }}">
                 <i class="bi-cart-fill me-1"></i>
                     Carrito
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
-        <div id="carrito" class="dropdown-menu" aria-labelledby="navbarCollapse">
-                                    
-                <table id="lista-carrito" class="table">
-                    <thead>
-                         <tr>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th></th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                    @foreach($productos as $pro)
-                    <tr>
-                                        
-                    <td><img src="{{asset($pro->imagen_producto)}}" height="100" width="100" alt="" ></td>
-                    <td>{{$pro->nombre_producto}}</td>
-                    <td>{{$pro->valor_actual}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
-                <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-                @endforeach
-        </div>
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></a>
+        
     </li>
     
 </ul>
 
 </div>
     
-  </ul>
+
 </div>
 <!-- navbar-collapse.// -->
 </div>
 <!-- container-fluid.// -->
 </div><!-- centrado.// -->
 </nav>
-</div>
+
 <!-- codigo de la vista de los productos.// -->
 <div class="container px-4 px-lg-5">
     <div class="alert alert-primary text-center">
@@ -145,42 +125,47 @@ Compra Segura
         <h2>PRODUCTOS</h2>
     </div>
 </div>
-</div>
-
 
 <section class="py-1">
     <div class="container px-3 px-lg-4 mt-3">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 justify-content-center">
-            @foreach ( $productos as $p)
-            <div class="col mb-3">
+            @foreach ( $productos as $co)
+            
+                <div class="col mb-3">
                 <div class="card h-80">
                     <!-- Product image-->
-                    <img class="card-img-top" src="{{asset($p->imagen_producto)}}" alt="..." />
+                    <img class="card-img-top" src="{{asset($co->imagen_producto)}}" alt="..." />
                     <!-- Product details-->
                     <div class="card-body p-2">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder">{{$p->nombre_producto}}</h5>
+                            <h5 class="fw-bolder">{{$co->nombre_producto}}</h5>
                             <!-- Product price-->
-                            <h5 class="fw-bolder">${{number_format($p->valor_actual)}}</h5>
+                            <h5 class="fw-bolder">${{number_format($co->valor_actual)}}</h5>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-3 pt-1 border-top-2 bg-transparent">
                         <div class="text-center border-top-1">
-                        <a class="btn btn-outline-primary btn-sm" onclick="addCarrito({{$p->id_producto}})" role="button">Agregar Carrito</a>
+                            <a class="btn btn-outline-primary btn-sm" onclick="addCarrito({{$co->id_producto}},{{$co->cantidad_existente}})" role="button">Agregar Carrito</a>
                             
-                            <a class="btn btn btn-primary btn-sm" onclick="datosvp({{$p->id_producto}})" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalle</a>
+
+
+                            <a class="btn btn btn-primary btn-sm" onclick="datos({{$co->id_producto}})"  role="button">Detalle</a>
                             {{-- <button role="button" class="btn btn-primary"  >
                                         Launch demo modal
                                       </button> --}}
                         </div>
                     </div>
+                    
                 </div>
             </div>
-            @endforeach
- <!-- Modal -->
- <div class="d-flex justify-content-center">
+        
+          @endforeach
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="d-flex justify-content-center">
             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
                 <div class="modal-dialog">
@@ -216,6 +201,7 @@ Compra Segura
 
             </div>
         </div>
+
 
         <!-- Modal no registrado -->
         <div class="d-flex justify-content-center">
@@ -255,7 +241,7 @@ Compra Segura
                                 <p>ingresa la cantidad de tu producto&hellip;</p>
                                 <input type="hidden" name="idDireccion" id="idDireccion">
                                 <input type="hidden" name="idProducto" id="idProduc">
-                                <input type="number" name="cantidad" id="cant">
+                                <input type="number" name="cantidad" id="cant" min="1">
                             </div>
                             <div class="modal-footer">
                                 <a type="submit" class="btn btn-danger">cancelar</a>
@@ -293,7 +279,6 @@ Compra Segura
         <!-- Modal elegir direccion -->
         <div class="d-flex justify-content-center">
             <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <Merge Conflict>
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -312,10 +297,11 @@ Compra Segura
 
             </div>
         </div>
-        
+  
         <script>
-            function datosvp(h) {
-                $('exampleModal1').modal('show');
+            function datos(h) {
+                $('#exampleModal1').modal('show');
+
                 $('#tituloP').val(' ')
                 $('#valor').val(' ')
                 $('#cantidad').val(' ')
@@ -323,8 +309,7 @@ Compra Segura
                 $('#imagenP').attr(' ')
                 $.ajax({
                     type: "post",
-                    // url:"{{ Route ('pro.api.detalle2',"+h+")}}",
-                    url: 'front/vistaproductos/'+ h,
+                    url: "{{ Route ('pro.api.detalle')}}",
                     data: {
                         id: h,
                         _token: '{{ csrf_token() }}'
@@ -346,13 +331,12 @@ Compra Segura
 
             }
 
-            function addCarrito(id) {
+            function addCarrito(id,cant) {
                 $('#idProduc').val(id)
                 $.ajax({
                     type: "post",
-                    // url:"{{ Route ('pro.api.detalle')}}",
-                    url: 'apicarrito',
-                    data: {
+                    url:"{{route('apicarrito')}}",
+                    data:{
                         _token: '{{ csrf_token()}}'
                     },
                     //dataType: 'json',
@@ -361,7 +345,8 @@ Compra Segura
                         if (res == "2") {
                             $('#idProduc').val(id)
                             $('#cant').val('')
-                        
+                            const cantMax = document.querySelector('#cant');
+                            cantMax.setAttribute('max',cant);
                             $('#exampleModal3').modal(
                                 'show'
                                 );
@@ -401,6 +386,8 @@ Compra Segura
                                     fila += "<td>";
                                     fila += "<a type='submit' data-bs-dismiss='modal' class='btn btn-primary' onclick='direccion(";
                                     fila += dir.id_direccion
+                                    fila += ","
+                                    fila += cant;
                                     fila += ")'>selccionar</a>";
                                     fila += "</td> </tr>";
 
@@ -417,58 +404,24 @@ Compra Segura
                         }
 
                     },
-                    error: function(error) {
+                    error:function(error) {
                         console.log(error);
                     }
 
                 });
 
-            function direccion (id){
+            }
+            function direccion(id,cant){
                 console.log("ok");
                 $('#idDireccion').val(id);
+                $('#cant').val('')
+                const cantMax = document.querySelector('#cant');
+                cantMax.setAttribute('max',cant);
                 $('#exampleModal3').modal('show');
             }
+
+
         </script>
             
 
 @endsection
-
-
-@section('js')
-
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-// make it as accordion for smaller screens
-if (window.innerWidth < 992) {
-
-  // close all inner dropdowns when parent is closed
-  document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
-    everydropdown.addEventListener('hidden.bs.dropdown', function () {
-      // after dropdown is hidden, then find all submenus
-        this.querySelectorAll('.submenu').forEach(function(everysubmenu){
-          // hide every submenu as well
-          everysubmenu.style.display = 'none';
-        });
-    })
-  });
-
-  document.querySelectorAll('.dropdown-menu a').forEach(function(element){
-    element.addEventListener('click', function (e) {
-        let nextEl = this.nextElementSibling;
-        if(nextEl && nextEl.classList.contains('submenu')) {	
-          // prevent opening link if link needs to open dropdown
-          e.preventDefault();
-          if(nextEl.style.display == 'block'){
-            nextEl.style.display = 'none';
-          } else {
-            nextEl.style.display = 'block';
-          }
-
-        }
-    });
-  })
-}
-// end if innerWidth
-}); 
-</script>
-@stop

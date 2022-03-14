@@ -25,7 +25,7 @@
       <label for="exampleFormControlSelect1">Subcategoria</label>
         <select class="form-control" name="subcategoria">
           @foreach ($subcategorias as $subca)
-            <option value="{{$subca->id_subcategoria}}" >{{$subca->nombre_subcategoria}}</option>
+            <option value="{{$subca->id_subcategoria}}">{{$subca->nombre_subcategoria}}</option>
           @endforeach
         </select>
   </div>

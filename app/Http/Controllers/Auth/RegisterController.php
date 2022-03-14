@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Tipo;
-use App\Models\Estado;
+use App\Models\Direccion;
 use App\Models\Fidelizacion;
+use App\Models\Municipio;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,12 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
+
+    public function showRegistrationForm()
+    {
+        $muni = Municipio::all();
+        return view('auth.register', compact('muni'));
+    }
 
     use RegistersUsers;
 
@@ -72,13 +79,22 @@ class RegisterController extends Controller
         $estado = 1;
         $fidelizacion = 1;
 
-        return User::create([
+        $usu = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'tipos_id_tipo' => $tipo->id,
-            'estado'=> $estado,
-            'fidelizacion_id'=>$fidelizacion,
+            'estado' => $estado,
+            'fidelizacion_id' => $fidelizacion,
         ]);
+
+        Direccion::create([
+            'id_usuario' => $usu->id,
+            'direccion' => $data['direccion'],
+            'barrio' => $data['barrio'],
+            'id_municipio' => $data['municipio'],
+        ]);
+
+        return $usu;
     }
 }

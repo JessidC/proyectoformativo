@@ -182,46 +182,20 @@ Compra Segura
     </div>  
     </li>
 
-    <li class="nav dropdown">
-        <button class="btn btn-outline-dark" height="70px" type="button"
-            width="70px" href="#" id="dropdown01" data-toggle="dropdown">
+        <li class="nav dropdown">
+        <a class="btn btn-outline-dark" height="70px" type="button"
+            width="70px" id="dropdown01" href="{{ Route ('existenteCarrito') }}">
                 <i class="bi-cart-fill me-1"></i>
                     Carrito
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
-        <div id="carrito" class="dropdown-menu" aria-labelledby="navbarCollapse">
-                                    
-                <table id="lista-carrito" class="table">
-                    <thead>
-                         <tr>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th></th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                    
-                    <tr>
-                                        
-                    <td><img src="" height="100" width="100" alt="" ></td>
-                    <td></td>
-                    <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
-                <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-                
-        </div>
-    
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></a>
+        
+    </li>
     
 </ul>
 
 </div>
     
-  </ul>
+
 </div>
 <!-- navbar-collapse.// -->
 </div>
@@ -231,10 +205,6 @@ Compra Segura
 
 
 
-
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

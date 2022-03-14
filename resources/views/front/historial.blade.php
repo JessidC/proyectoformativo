@@ -52,15 +52,17 @@ Compra Segura
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 @endsection
 
+
+
 @section('content')
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
     
 <nav class="navbar navbar-expand-lg  navbar-light bg-light">
 <div class="container px-20 px-lg-20">
 <div class="container-fluid">
-<a class="navbar-brand" href="{{ Route ('welcome') }}">Compra Segura</a>
+<a class="navbar-brand" href="#">Compra Segura</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -75,7 +77,9 @@ Compra Segura
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorias</a>
       <ul class="dropdown-menu">
       @foreach ($categorias as $ca)
+      @if($ca->estado=="1")
         <li> <a class="dropdown-item" value="{{$ca->id_categoria}}">{{$ca->nombre_categoria}} &raquo; </a>
+        @endif 
           <ul class="submenu dropdown-menu">       
           @foreach ($subcategoria as $sub)
           @if( $sub->id_categoria == $ca->id_categoria)
@@ -89,76 +93,43 @@ Compra Segura
     </ul>
     <li class="nav-item"><a class="nav-link" href="/proyectoformativo/public/perfil">Mi Perfil</a></li>
 
-    <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown">
-        
+    <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown"> 
+    
+</li>
     <li class="nav-item dropdown" id="myDropdown">
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{{ Route ('pecu') }}">PQRS</a></li>
-      <li><a class="dropdown-item" href="{{ Route ('pqrs.epqrs') }}">Preguntas frecuentes</a></li>
+      <li><a class="dropdown-item" href="{{ Route ('preguntas') }}">Preguntas frecuentes</a></li>
       </ul>
     </div>  
     </li>
 
-    <button class="btn btn-outline-dark" height="70px" type="button"
-            width="70px" href="#" id="dropdown01" data-toggle="dropdown">
+        <li class="nav dropdown">
+        <a class="btn btn-outline-dark" height="70px" type="button"
+            width="70px" id="dropdown01" href="{{ Route ('existenteCarrito') }}">
                 <i class="bi-cart-fill me-1"></i>
                     Carrito
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-    </button>
-    <div>
-    <li>
-    
-
-        <div id="carrito" class="dropdown-menu" aria-labelledby="navbarCollapse">
-                                    
-                <table id="lista-carrito" class="table">
-                    <thead>
-                         <tr>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th></th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                  
-                    <tr>
-                                        
-                    
-                    </tr>
-                    </tbody>
-                </table>
-
-                <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
-                <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-                
-        </div>
-    
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></a>
+        
+    </li>
     
 </ul>
 
 </div>
     
-  </ul>
+
 </div>
 <!-- navbar-collapse.// -->
 </div>
 <!-- container-fluid.// -->
 </div><!-- centrado.// -->
 </nav>
-</div>
 
-
-@section('content')
+<div class="container px-15 px-lg-15">
 <div class="card">
         <div class="card-header">
             <h1>Pedidos</h1>
-
-            <span></span>
-            <br>
-            <p></p>
 
             <table class="table" id="tbpedido">
                 <thead>
@@ -177,11 +148,18 @@ Compra Segura
                             <td>{{ $pe->valor_total_factura }}</td>
                             <td>{{ $pe->num_factura }}</td>
                         </tr>
+                        <br></br>
                     @endforeach
+                       
                 </tbody>
+                
             </table>
+            <br></br> 
         </div>
     </div>
+    <br></br> 
+</div>
+</html>
 @stop
 
 

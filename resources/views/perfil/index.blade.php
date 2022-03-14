@@ -191,9 +191,14 @@
 
  
 <center> <div class="card" style="width: 26rem;">
+
+
+
 <img   class="rounded-circle" src="{{asset('storage').'/'.$empleado->imagen}}" width= "400" border-radius ="1000" alt="">
   <div class="card-body">
-    <h5 class="card-title">MY PERFIL</h5>
+
+
+    
     <p class="card-text"></p>
   </div>
 

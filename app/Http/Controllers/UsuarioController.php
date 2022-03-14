@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Models\Tipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,8 +11,11 @@ class UsuarioController extends Controller
 {
     public function usuario()
     {
-        $Usuario = Usuario::all();
-        return view('usuarios.usuarios', compact('Usuario'));
+        //$Usuario = Usuario::all();
+        $usuario= Usuario:: select('users.id as id','name','email','password','documento','telefono','nombre_tipo')
+        ->join('tipos as t', 't.id', 'users.tipos_id_tipo')
+        ->get();
+        return view('usuarios.usuarios', compact('usuario'));
     }
     public function agregar()
     {
@@ -37,8 +41,10 @@ class UsuarioController extends Controller
     public function buscar(Request $request, $id)
     {
             $Usuario = Usuario::findOrFail($id);
+            $tipos = Tipo::all();
 
-            return view('usuarios.editar', compact('Usuario'));
+
+            return view('usuarios.editar', compact('Usuario','tipos'));
     }
 
     public function borrar($id)
@@ -58,6 +64,8 @@ class UsuarioController extends Controller
         $Usuario->save();
         return redirect()->route('users');
     }
+
+
 
 
 }

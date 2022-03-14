@@ -27,6 +27,24 @@
         <input type="password" name="mail" class="form-control" value="{{$Usuario->password}}">
         <input type="hidden" name="id" class="form-control" value="{{$Usuario->id}}">
     </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlSelect1">Roles</label>
+        <select class="form-control" name="tipo">
+        @foreach ($tipos as $ti)
+
+            @if( $ti->id == $Usuario->tipos_id_tipo)
+          
+            <option value="{{ $ti->id }}"selected >{{$ti->nombre_tipo}}</option>
+
+            @else
+
+            <option value="{{ $ti->id }}">{{$ti->nombre_tipo}}</option>
+            @endif
+            
+           @endforeach           
+        </select>
+    </div>
    
 
  

@@ -21,23 +21,23 @@
               <th scope="col">Name</th>
               <th scope="col">email</th>
               <th scope="col">Celular</th>
-              <th scope="col">Contrasena</th>
+              <!--<th scope="col">Contrasena</th>-->
               <th scope="col">documento</th>
               
               <th scope="col">tipos_id_tipo</th>
             </tr>
           </thead>
           <tbody>
-              @foreach ($Usuario as $u)
+              @foreach ($usuario as $u)
             <tr>
               <th scope="row">{{$u->id}}</th>
               <td>{{$u->name}}</td>
               <td>{{$u->email}}</td>
               <td>{{$u->celular}}</td>
-              <td>{{$u->password}}</td>
+              <!--<td>{{$u->password}}</td>-->
               <td>{{$u->documento}}</td>
               
-              <td>{{$u->tipos_id_tipo}}</td>
+              <td>{{$u->nombre_tipo}}</td>
                             <td>
                                 <a class="btn btn-success btn-sm" href="{{ Route('usu.buscar', $u->id) }}"
                                     role="button">Editar</a>

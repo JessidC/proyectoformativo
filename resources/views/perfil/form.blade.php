@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 
-
+@section('content')
 <!--<form 
 <br>
 
@@ -69,7 +69,7 @@
 
     <li  class="list-group-item"> <h5>DOCUMENTO</h5></li>
     <li class="list-group-item"><div class="form-group">
-<label for="nombre"> documento   </label>
+<label for="nombre"> docmuento   </label>
 <input type="text" class="form-control" name="documento"  value="{{$empleado->documento}}"  id="documentoo"  >
 <br>
 </div>

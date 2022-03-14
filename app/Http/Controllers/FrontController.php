@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
-
+use App\Models\Usuario;
 use App\Models\Categoria;
 use App\Models\Subcategoria;
 
@@ -77,5 +77,18 @@ class FrontController extends Controller
         
         return ($producto);
     }
+
+    
+    public function vistaperfil()
+    
+    {
+        $categorias = Categoria::all();
+        $subcategoria = Subcategoria::all();
+        $Usuario= Usuario::all();
+        
+        return view('front.perfil',compact('categorias','subcategoria','Usuario'));
+    }
+
+
 
 }

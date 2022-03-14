@@ -93,9 +93,9 @@ class ProductoController extends Controller
     }
 
 
-    public function api_detalle($id)
+    public function api_detalle(Request $request)
     {
-        $producto = Producto::findOrFail($id);
+        $producto = Producto::findOrFail($request-> id);
         
         return ($producto);
     }

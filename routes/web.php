@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\perfil_us;
-use JeroenNoten\LaravelAdminLte\Components\Widget\Alert;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,18 +26,21 @@ Route::get('/front/about', [App\Http\Controllers\FrontController::class, 'info']
 Route::get('/front/tecnologia', [App\Http\Controllers\FrontController::class, 'catTecno'])->name('tecno');
 Route::get('/front/preguntas', [App\Http\Controllers\FrontController::class, 'vistapreguntas'])->name('preguntas');
 Route::post('/front/preguntas/{id?}', [App\Http\Controllers\ProductoController::class, 'api_detalle'])->name('prov.api.detalle');
-
+Route::resource('perfil',perfil_us::class)->middleware('auth');
 //VISTA PRODUCTOS
 Route::get('/front/vistaproductos/{id?}', [App\Http\Controllers\FrontController::class, 'vistaProductos'])->name('vProductos');
 Route::post('/front/vistaproductos/{id?}', [App\Http\Controllers\FrontController::class, 'apiprodxsub'])->name('api.prodxcap');
 Route::post('/front/vistaproductos/{id?}', [App\Http\Controllers\FrontController::class, 'api_detallevprod'])->name('pro.api.detalle2');
 //PQRS
+
 Route::get('/front/pqrs', [App\Http\Controllers\PqrsController::class, 'pecu'])->name('pecu');
 Route::post('/front/pqrs', [App\Http\Controllers\PqrsController::class, 'epqrs'])->name('pqrs.epqrs');
 
-Route::get('/front/carrito', [App\Http\Controllers\FrontController::class, 'vCarrito'])->name('carrito');
+// Route::get('/front/carrito', [App\Http\Controllers\FrontController::class, 'vCarrito'])->name('carrito');
 Route::get('/front/otros', [App\Http\Controllers\FrontController::class, 'catOtro'])->name('otros');
-Route::resource('perfil',perfil_us::class)->middleware('auth');
+
+
+
 
 Auth::routes();
 
@@ -67,10 +70,14 @@ Route::get('Productos/exportar', [App\Http\Controllers\ProductoController::class
 
 
 //CARRITO
+
 Route::get('/front/carrito', [App\Http\Controllers\CarritoController::class, 'index'])->name('cart');
 Route::post('/apicarrito', [App\Http\Controllers\CarritoController::class, 'apiCarrito'])->name('apicarrito');
 Route::get('/carrito', [App\Http\Controllers\CarritoController::class, 'existenteCarrito'])->name('existenteCarrito');
 Route::post('/carrito/guardar', [App\Http\Controllers\CarritoController::class, 'guardar'])->name('cart.guardar');
+Route::post('/carrito/eliminar', [App\Http\Controllers\CarritoController::class, 'eliminar'])->name('cart.eliminar');
+Route::post('/carrito/reducir', [App\Http\Controllers\CarritoController::class, 'reducir'])->name('cart.reducir');
+Route::post('/carrito/incrementar', [App\Http\Controllers\CarritoController::class, 'incrementar'])->name('cart.incrementar');
 //CATEGORIAS
 
 Route::get('/categorias/categorias', [App\Http\Controllers\CategoriaController::class, 'categorias'])->name('categorias');
@@ -96,8 +103,11 @@ Route::get('/marcas/{id?}/editar', [App\Http\Controllers\MarcaController::class,
 Route::get('/marcas/{id?}/eliminar', [App\Http\Controllers\MarcaController::class, 'eliminar'])->name('mar.eliminar');
 Route::post('/marcas/actualizar', [App\Http\Controllers\MarcaController::class, 'actualizar'])->name('mar.actualizar');
 
-//DIRECCION
-Route::get('/direcciones/direccion', [App\Http\Controllers\DireccionController::class, 'index'])->name('direccion');
+
+//DIRECCIONES
+Route::get('/Direcciones', [App\Http\Controllers\DireccionController::class, 'index'])->name('direccion');
+Route::get('/Direcciones/{id?}/editar', [App\Http\Controllers\DireccionController::class, 'buscar'])->name('dir.buscar');
+Route::put('/Direcciones/', [App\Http\Controllers\DireccionController::class, 'update'])->name('dir.actualizar');
 
 //PEDIDOS
 Route::get('/pedidos/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidos'])->name('pedidos');

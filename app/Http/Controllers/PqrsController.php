@@ -9,23 +9,31 @@ use Illuminate\Http\Request;
 
 class PqrsController extends controller
 {
-    /*public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
         
-    }*/
+    }
+
+
+
+
+
     public function pecu ()
     {
         $pqrs = new Pqrs();
+        $pqrs = $pqrs::all();
         $categorias = Categoria::all();
         $subcategoria = Subcategoria::all();
-        $pqrs = $pqrs::all();
+        
         return view('front.pqrs', compact('pqrs','categorias','subcategoria'));
     }
 
     public function epqrs(Request $request)
     {
         $pqrs = new Pqrs();
+        $categorias = Categoria::all();
+        $subcategoria = Subcategoria::all();
         
 
         $pqrs->nombre_pqrs = $request->nombre_pqrs;
@@ -35,7 +43,7 @@ class PqrsController extends controller
         
         $pqrs->save();
    
-        return view('front.pqrs', compact('pqrs'));
+        return view('front.pqrs', compact('pqrs','categorias','subcategoria'));
       
         
         

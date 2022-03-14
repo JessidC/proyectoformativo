@@ -9,5 +9,5 @@ class Municipio extends Model
 {
     use HasFactory;
 
-    protected $table = 'id_municipio';
+    protected $table = 'municipio';
 }

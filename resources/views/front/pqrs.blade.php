@@ -53,7 +53,7 @@ Compra Segura
 <nav class="navbar navbar-expand-lg  navbar-light bg-light">
 <div class="container px-20 px-lg-20">
 <div class="container-fluid">
-<a class="navbar-brand" href="{{ Route ('welcome') }}">Compra Segura</a>
+<a class="navbar-brand" href="#">Compra Segura</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -84,8 +84,9 @@ Compra Segura
     </ul>
     <li class="nav-item"><a class="nav-link" href="/proyectoformativo/public/perfil">Mi Perfil</a></li>
 
-    <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown">
-        
+    <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown"> 
+    
+</li>
     <li class="nav-item dropdown" id="myDropdown">
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
@@ -95,48 +96,20 @@ Compra Segura
     </div>  
     </li>
 
-    <button class="btn btn-outline-dark" height="70px" type="button"
-            width="70px" href="#" id="dropdown01" data-toggle="dropdown">
+        <li class="nav dropdown">
+        <a class="btn btn-outline-dark" height="70px" type="button"
+            width="70px" id="dropdown01" href="{{ Route ('existenteCarrito') }}">
                 <i class="bi-cart-fill me-1"></i>
                     Carrito
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-    </button>
-    <div>
-    <li>
-    
-
-        <div id="carrito" class="dropdown-menu" aria-labelledby="navbarCollapse">
-                                    
-                <table id="lista-carrito" class="table">
-                    <thead>
-                         <tr>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th></th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                  
-                    <tr>
-                                        
-                    
-                    </tr>
-                    </tbody>
-                </table>
-
-                <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
-                <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-                
-        </div>
-    
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></a>
+        
+    </li>
     
 </ul>
 
 </div>
     
-  </ul>
+
 </div>
 <!-- navbar-collapse.// -->
 </div>
@@ -144,9 +117,6 @@ Compra Segura
 </div><!-- centrado.// -->
 </nav>
 </div>
-
-
-
 
     <header class="section page-header"></header> 
     <header class=" py-1">

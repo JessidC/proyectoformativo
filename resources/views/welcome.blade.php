@@ -92,7 +92,7 @@ Compra Segura
         @endforeach
         
     </ul>
-    <li class="nav-item"><a class="nav-link" href="/proyectoformativo/public/perfil">Mi Perfil</a></li>
+    <li class="nav-item"><a class="nav-link" href="perfil">Mi Perfil</a></li>
 
     <li class="nav-item"><a class="nav-link" href="{{ Route ('historialpedidos') }}">Pedidos</a></li><li class="nav-item dropdown" id="myDropdown"> 
     
@@ -101,51 +101,25 @@ Compra Segura
       <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ayuda</a>
       <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{{ Route ('pecu') }}">PQRS</a></li>
-      <li><a class="dropdown-item" href="{{ Route ('pqrs.epqrs') }}">Preguntas frecuentes</a></li>
+      <li><a class="dropdown-item" href="{{ Route ('preguntas') }}">Preguntas frecuentes</a></li>
       </ul>
     </div>  
     </li>
 
-    <li class="nav dropdown">
-        <button class="btn btn-outline-dark" height="70px" type="button"
-            width="70px" href="#" id="dropdown01" data-toggle="dropdown">
+        <li class="nav dropdown">
+        <a class="btn btn-outline-dark" height="70px" type="button"
+            width="70px" id="dropdown01" href="{{ Route ('existenteCarrito') }}">
                 <i class="bi-cart-fill me-1"></i>
                     Carrito
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></button>
-        <div id="carrito" class="dropdown-menu" aria-labelledby="navbarCollapse">
-                                    
-                <table id="lista-carrito" class="table">
-                    <thead>
-                         <tr>
-                            <th>Imagen</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th></th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                    
-                    <tr>
-                                        
-                    <td><img src="" height="100" width="100" alt="" ></td>
-                    <td></td>
-                    <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
-                <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar Compra</a>
-                
-        </div>
-    
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span></a>
+        
+    </li>
     
 </ul>
 
 </div>
     
-  </ul>
+
 </div>
 <!-- navbar-collapse.// -->
 </div>
@@ -262,7 +236,7 @@ Compra Segura
                     <!-- Product actions-->
                     <div class="card-footer p-3 pt-1 border-top-2 bg-transparent">
                         <div class="text-center border-top-1">
-                        <a class="btn btn-outline-primary btn-sm" onclick="addCarrito({{$p->id_producto}})" role="button">Agregar Carrito</a>
+                        <a class="btn btn-outline-primary btn-sm" onclick="addCarrito({{$p->id_producto}},{{$p->cantidad_existente}})" role="button">Agregar Carrito</a>
                             
                             <a class="btn btn btn-primary btn-sm" onclick="datos({{$p->id_producto}})" data-bs-toggle="modal" data-bs-target="#exampleModal">Detalle</a>
                             {{-- <button role="button" class="btn btn-primary"  >
@@ -353,7 +327,7 @@ Compra Segura
                                 <p>ingresa la cantidad de tu producto&hellip;</p>
                                 <input type="hidden" name="idDireccion" id="idDireccion">
                                 <input type="hidden" name="idProducto" id="idProduc">
-                                <input type="number" name="cantidad" id="cant">
+                                <input type="number" name="cantidad" id="cant" min="1">
                             </div>
                             <div class="modal-footer">
                                 <a type="submit" class="btn btn-danger">cancelar</a>
@@ -415,7 +389,9 @@ Compra Segura
         
         <script>
             function datos(h) {
-                $('#exampleModal1').modal('show');
+                 $('#exampleModal1').modal(
+                                'show'
+                                );
                 $('#tituloP').val(' ')
                 $('#valor').val(' ')
                 $('#cantidad').val(' ')
@@ -424,7 +400,8 @@ Compra Segura
                 $.ajax({
                     type: "post",
                     // url:"{{ Route ('pro.api.detalle',"+h+")}}",
-                    url: 'productos/' + h,
+                    url: "{{ Route ('pro.api.detalle')}}",
+                    
                     data: {
                         id: h,
                         _token: '{{ csrf_token() }}'
@@ -457,10 +434,12 @@ Compra Segura
                     },
                     //dataType: 'json',
                     success: function(res) {
-                        console.log(res);
+                            // console.log("entro al success");
                         if (res == "2") {
                             $('#idProduc').val(id)
                             $('#cant').val('')
+                            const cantMax = document.querySelector('#cant');
+                            cantMax.setAttribute('max',cant);
                         
                             $('#exampleModal3').modal(
                                 'show'
@@ -480,7 +459,7 @@ Compra Segura
                         else {
                             function crearTabla (lista){
                                 let stringTabla = "<tr><th>Direccion</th> <th>Barrio</th> <th>Departamento</th> <th>Municipio</th></tr>" ;
-
+console.log(cant)
                                 for (let dir of lista) {
                                     let fila = "<tr> <td>";
                                     fila += dir.direccion;
@@ -500,7 +479,9 @@ Compra Segura
 
                                     fila += "<td>";
                                     fila += "<a type='submit' data-bs-dismiss='modal' class='btn btn-primary' onclick='direccion(";
-                                    fila += dir.id_direccion
+                                    fila += dir.id_direccion;
+                                    fila += ","
+                                    fila += 0;
                                     fila += ")'>selccionar</a>";
                                     fila += "</td> </tr>";
 
@@ -522,14 +503,16 @@ Compra Segura
                     }
 
                 });
-
             }
-            function direccion (id){
+            function direccion (id,cant){
                 console.log("ok");
                 $('#idDireccion').val(id);
                 $('#exampleModal3').modal('show');
+                $('#cant').val('')
+                const cantMax = document.querySelector('#cant');
+                cantMax.setAttribute('max',cant);
+                $('#exampleModal3').modal('show');
             }
-
 
         </script>
 
@@ -544,7 +527,7 @@ Compra Segura
 </html>
 @endsection
 
-@section('js')
+<!--@section('js')
 <script>
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -582,4 +565,4 @@ if (window.innerWidth < 992) {
 }); 
 </script>
 
-@stop
+@stop -->

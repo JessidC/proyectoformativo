@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrito;
 use App\Models\Estado;
+use App\Models\Categoria;
+use App\Models\Subcategoria;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pedido;
 use App\Models\Producto;
@@ -16,11 +17,12 @@ use Exception;
 class CarritoController extends controller
 {
     
-    
-
     public function index()
     {
-        return view('front.carrito');
+        $categorias = Categoria::all();
+        $subcategoria = Subcategoria::all();
+
+        return view('front.carrito',compact('categorias','subcategoria'));
     }
 
     public function apiCarrito(){
@@ -91,26 +93,17 @@ class CarritoController extends controller
                 ->where('pp.id_pedido', $pedidos->id_pedidos)
                 ->get();
                 
-
-                return view('front/carrito', compact('productos','pedidos'));
+                $categorias = Categoria::all();
+                $subcategoria = Subcategoria::all();
+                return view('front/carrito', compact('productos','pedidos', 'categorias', 'subcategoria'));
 
             } else {
-                dd("usted no tiene productos en el carrito");
-                // $direccion = User::select('id_direccion')
-                // ->join('direccion as d', 'd.id_usuario', 'users.id')
-                // ->where('users.id', $user->id)
-                // ->first();
-
-                // $pedido = new Pedido();
-                // $pedido->id_direccion = $direccion->id_direccion;
-                // $pedido->fecha_pedido = now();
-                // $pedido->valor_total_factura = 0;
+                return redirect('');
+               
             }
 
-            dd($pedidos);
-
         } else {
-            dd("retornar vista donde se indique que debe estar registrado o almenos la ventana de login");
+            return redirect('');
         }
     }
     public function guardar(Request $request)
@@ -135,10 +128,12 @@ class CarritoController extends controller
 
 
                 $pedpro = Pedproduct::where('pedido_x_producto.id_producto', $request->idProducto)
+                ->where('id_pedido', $pedidos->id_pedidos)
                 ->count();
-                
+             
                 if($pedpro){
                     $pedpro = Pedproduct::where('pedido_x_producto.id_producto', $request->idProducto)
+                              ->where('id_pedido', $pedidos->id_pedidos)
                               ->first();
 
                     $producto = Producto::findOrFail($request->idProducto);
@@ -161,7 +156,7 @@ class CarritoController extends controller
                     $pedido->valor_total_factura = $valorFac;
                     $pedido->save();
 
-                    return view('welcome');
+                    return redirect('');
                 
                 }else{
 
@@ -194,7 +189,7 @@ class CarritoController extends controller
                     $pedido->valor_total_factura = $valorFac;
                     $pedido->save();
 
-                    return view('welcome');
+                    return redirect('');
                 
                 
                 }
@@ -227,7 +222,129 @@ class CarritoController extends controller
                     $prodPedido->save();
 
 
-                    return view('welcome');
+                    return redirect('');
             }
+            
+    }
+    public function eliminar(Request $request)
+    {   
+        //eliminar un pedido por producto
+        $prodPedido = Pedproduct::findOrFail($request->id);
+        $prodPedido->delete();
+
+        $pedProductos = Pedproduct ::where('pedido_x_producto.id_pedido', $request->idPedido)->get();
+        $valorFac = 0;
+
+        foreach($pedProductos as $pedProducto ) {
+                $valorFac += (int)$pedProducto->valor_producto_venta;
+        }
+
+        $pedido = Pedido::findOrFail($request->idPedido);
+        $pedido->valor_total_factura = $valorFac;
+        $pedido->save();
+
+
+        $pedProductos = Pedproduct ::where('pedido_x_producto.id_pedido', $request->idPedido)
+                        ->count();
+        
+        //eliminar el pedido si no quedan pedidos por producto
+        if($pedProductos){
+            
+        }else{
+            $pedido = Pedido::findOrFail($request->idPedido);
+            $pedido->delete();
+        }
+       
+        
+        return $valorFac;
+    }
+
+    public function reducir(Request $request)
+    {
+        $user = Auth::user();
+
+        $pedidos = User::select('p.id_pedidos')
+        ->join('direccion as d', 'd.id_usuario', 'users.id')
+        ->join('pedidos as p', 'p.id_direccion', 'd.id_direccion')
+        ->where('users.id', $user->id)
+        ->where('p.estado', 1)
+        ->first();
+
+
+        
+            $pedpro = Pedproduct::where('pedido_x_producto.id_producto', $request->idP)
+                      ->where('id_pedido', $pedidos->id_pedidos)
+                      ->first();
+
+            $producto = Producto::findOrFail($request->idP);
+            $cantidad = (int)( 1  - $pedpro->cantidad);
+            $valor = (int)$producto->valor_actual;
+
+            $prodPedido =  Pedproduct::findOrFail($pedpro->id_pedido_x_producto);
+            $prodPedido->cantidad -= 1;
+            $prodPedido->valor_producto_venta = ($valor * (-$cantidad));
+            $prodPedido->save();
+
+            $pedProductos = Pedproduct ::where('pedido_x_producto.id_pedido', $pedidos->id_pedidos)->get();
+            $valorFac = 0;
+
+            foreach($pedProductos as $pedProducto ) {
+                $valorFac += (int)$pedProducto->valor_producto_venta;
+            }
+
+            $pedido = Pedido::findOrFail($pedidos->id_pedidos);
+            $pedido->valor_total_factura = $valorFac;
+            $pedido->save();
+
+            $valores = array();
+            $valores[0] = $valorFac;
+            $valores[1] = ($valor * (-$cantidad));
+    
+                    
+        return $valores;
+    }
+    public function incrementar(Request $request)
+    {
+        $user = Auth::user();
+
+        $pedidos = User::select('p.id_pedidos')
+        ->join('direccion as d', 'd.id_usuario', 'users.id')
+        ->join('pedidos as p', 'p.id_direccion', 'd.id_direccion')
+        ->where('users.id', $user->id)
+        ->where('p.estado', 1)
+        ->first();
+
+
+        
+            $pedpro = Pedproduct::where('pedido_x_producto.id_producto', $request->idP)
+                      ->where('id_pedido', $pedidos->id_pedidos)
+                      ->first();
+
+            $producto = Producto::findOrFail($request->idP);
+            $cantidad = (int)( 1  + $pedpro->cantidad);
+            $valor = (int)$producto->valor_actual;
+
+            $prodPedido =  Pedproduct::findOrFail($pedpro->id_pedido_x_producto);
+            $prodPedido->cantidad += 1;
+            $prodPedido->valor_producto_venta = ($valor * $cantidad);
+            $prodPedido->save();
+
+            $pedProductos = Pedproduct ::where('pedido_x_producto.id_pedido', $pedidos->id_pedidos)->get();
+            $valorFac = 0;
+
+            foreach($pedProductos as $pedProducto ) {
+                $valorFac += (int)$pedProducto->valor_producto_venta;
+            }
+
+            $pedido = Pedido::findOrFail($pedidos->id_pedidos);
+            $pedido->valor_total_factura = $valorFac;
+            $pedido->save();
+
+            $valores = array();
+            $valores[0] = $valorFac;
+            $valores[1] = ($valor * $cantidad);
+    
+                    
+        return $valores;
     }
 }
